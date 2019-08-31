@@ -20,6 +20,7 @@ const createCardFunc = (imgPath, filmTitle, movieId) => {
 
   const filmListItem = document.createElement('li');
   filmListItem.classList.add('filmList__item')
+  filmList.setAttribute('data-id', movieId)
 
   const filmListPoster = document.createElement('img');
   filmListPoster.classList.add('filmList__poster');
@@ -38,7 +39,7 @@ const createCardFunc = (imgPath, filmTitle, movieId) => {
   return filmListItem;
 }
 
-const fetchPopularMoviesList = (page) => {
+const fetchPopularMoviesList = (page = 1) => {
   // - создаем функцию fetchPopularMoviesList (должна в запросе 
   // в виде переменной использовать pageNumber) в которой 
   // используется createCardFunc результат используя fragment 
@@ -49,12 +50,17 @@ const fetchPopularMoviesList = (page) => {
   return fetch(`${URL + page}`)
     .then(responce => responce.json())
     .then(data => {
-      const fragment = document.createDocumentFragment(); data.results.forEach(el =>
+      renderFilms = data.results;
+      pageNumber = data.page;
+
+      const fragment = document.createDocumentFragment();
+
+      renderFilms.forEach(el =>
         fragment.append(createCardFunc(el.backdrop_path, el.original_title, el.id))
       )
+      filmList.innerHTML = "";
       filmList.append(fragment);
 
-      return data.page;
     }
     )
     .catch(console.log)
@@ -69,7 +75,7 @@ const fetchGenres = () => {
 
 
 // - запускаем функцию fetchPopularMoviesList и fetchGenres. 
-fetchPopularMoviesList(5);
+fetchPopularMoviesList();
 
 fetchGenres();
 
