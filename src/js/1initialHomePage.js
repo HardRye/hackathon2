@@ -1,5 +1,10 @@
-const URL = 'https://api.themoviedb.org/3/movie/popular?api_key=9675092798f3a490a8c4d8f2cf77169b&language=en-US&page='
+"use strict";
 
+// - это первый файл не забываем про ‘use strict’ (далее никто его не пишет в своих js файлах);
+const URL_POPULAR = 'https://api.themoviedb.org/3/movie/popular?api_key=9675092798f3a490a8c4d8f2cf77169b&language=en-US&page=';
+const URL_GENRES = 'https://api.themoviedb.org/3/genre/movie/list?api_key=9675092798f3a490a8c4d8f2cf77169b&language=en-US'
+
+// - выбираем из DOM наш список;
 const filmList = document.querySelector('.filmList')
 
 // - создаем глобальные переменные renderFilms и genres, pageNumber 
@@ -47,11 +52,11 @@ const fetchPopularMoviesList = (page = 1) => {
   // переменную renderFilms (она понадобится в работе следующим 
   // участникам); 
 
-  return fetch(`${URL + page}`)
+  fetch(`${URL_POPULAR + page}`)
     .then(responce => responce.json())
     .then(data => {
       renderFilms = data.results;
-      pageNumber = data.page;
+      // pageNumber = data.page;
 
       const fragment = document.createDocumentFragment();
 
@@ -70,13 +75,16 @@ const fetchGenres = () => {
   // - создаем функцию fetchGenres которая забирает 
   // жанры и кладет их в переменную genres (она понадобится 
   // в работе следующим участникам); 
-}
 
+  fetch(URL_GENRES)
+    .then(responce => responce.json())
+    .then(data => {
+      genres = data.genres
+    })
+    .catch(console.log)
+}
 
 
 // - запускаем функцию fetchPopularMoviesList и fetchGenres. 
 fetchPopularMoviesList();
-
 fetchGenres();
-
-
