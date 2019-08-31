@@ -1,42 +1,76 @@
-// const URL = 'https://api.themoviedb.org/3/movie/550?api_key=9675092798f3a490a8c4d8f2cf77169b'
+const URL = 'https://api.themoviedb.org/3/movie/popular?api_key=9675092798f3a490a8c4d8f2cf77169b&language=en-US&page='
 
-// fetch(URL)
-//   .then(data => console.log(data))
-//   .catch(console.log)
+const filmList = document.querySelector('.filmList')
 
-
-// const URL2 = 'https://api.themoviedb.org/3/discover/movie?with_people=108916,7467&sort_by=popularity.desc'
-
-// fetch(URL2)
-//   .then(responce => responce.json())
-//   .then(data => console.log(data))
-//   .catch(console.log)
-
-
-
-
-// - создаем глобальные переменные renderFilms и genres, pageNumber (будет использоваться в запросе при плагинации); 
+// - создаем глобальные переменные renderFilms и genres, pageNumber 
+// (будет использоваться в запросе при плагинации); 
 let renderFilms;
 let genres;
 let pageNumber;
 
 
 const createCardFunc = (imgPath, filmTitle, movieId) => {
-  // - создаем функцию createCardFunc, она принимает параметрами imgPath, filmTitle, movieId создает li согласно макета, вешает на нее слушателем функцию activeDetailsPage c параметрами movieId и флагом false так как фильм из библиотеки (смотри пункт “3)” создание activeDetailsPage);
+  // - создаем функцию createCardFunc, она принимает параметрами 
+  // imgPath, filmTitle, movieId создает li согласно макета, 
 
+  // вешает на нее слушателем функцию activeDetailsPage c параметрами 
+  // movieId и флагом false так как фильм из библиотеки (смотри 
+  // пункт “3)” создание activeDetailsPage);
+
+
+  const filmListItem = document.createElement('li');
+  filmListItem.classList.add('filmList__item')
+
+  const filmListPoster = document.createElement('img');
+  filmListPoster.classList.add('filmList__poster');
+  filmListPoster.setAttribute('alt', filmTitle);
+  filmListPoster.setAttribute('src',
+    'https://image.tmdb.org/t/p/' + 'w500' + imgPath);
+  filmListItem.append(filmListPoster);
+
+  const filmListTitle = document.createElement('p');
+  filmListTitle.classList.add('item__name');
+  filmListTitle.textContent = filmTitle;
+  filmListItem.append(filmListTitle);
+
+  // filmListItem.addEventListener('click', activeDetailsPage)
+
+  return filmListItem;
 }
 
-const fetchPopularMoviesList = () => {
-  // - создаем функцию fetchPopularMoviesList (должна в запросе в виде переменной использовать pageNumber) в которой используется createCardFunc результат используя fragment кладем в ul, и не забываем заполнить этими же данными переменную renderFilms (она понадобится в работе следующим участникам); 
+const fetchPopularMoviesList = (page) => {
+  // - создаем функцию fetchPopularMoviesList (должна в запросе 
+  // в виде переменной использовать pageNumber) в которой 
+  // используется createCardFunc результат используя fragment 
+  // кладем в ul, и не забываем заполнить этими же данными 
+  // переменную renderFilms (она понадобится в работе следующим 
+  // участникам); 
 
+  return fetch(`${URL + page}`)
+    .then(responce => responce.json())
+    .then(data => {
+      const fragment = document.createDocumentFragment(); data.results.forEach(el =>
+        fragment.append(createCardFunc(el.backdrop_path, el.original_title, el.id))
+      )
+      filmList.append(fragment);
+
+      return data.page;
+    }
+    )
+    .catch(console.log)
 }
 
 const fetchGenres = () => {
-  // - создаем функцию fetchGenres которая забирает жанры и кладет их в переменную genres (она понадобится в работе следующим участникам); 
+  // - создаем функцию fetchGenres которая забирает 
+  // жанры и кладет их в переменную genres (она понадобится 
+  // в работе следующим участникам); 
 }
 
 
 
 // - запускаем функцию fetchPopularMoviesList и fetchGenres. 
-fetchPopularMoviesList();
+fetchPopularMoviesList(5);
+
 fetchGenres();
+
+
