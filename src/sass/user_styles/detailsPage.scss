@@ -1,32 +1,99 @@
-.container {
-  width: 500px;
-  display: flex;
+.card {
+  padding: 20px 22px;
 }
 
-.somesection {
+.card-details {
+  width: 274px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.card-details__img {
   display: block;
-  margin: 0 auto;
-  justify-content: center;
+  height: 402px;
+  width: 274px;
+  margin-bottom: 18px;
 }
 
-.head {
+.card-details__title,
+.card-details__about--title {
   font-family: 'Roboto';
-  font-size: 14px;
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 500; 
+  font-size: 16.6px;
+  line-height: 20px;
+  color: rgb(55, 44, 72);
+  margin-bottom: 12px;
 }
 
-.text {
+.card-details__description {
   font-family: 'Roboto';
-  font-size: 14px;
-  font-weight: 400;
-  margin: 0 auto;
+  font-style: normal;
+  font-weight: 400; 
+  font-size: 13.3px;
+  line-height: 25.7px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 20px;
 }
 
-.link {
+.card-details__votes, 
+.card-details__name,
+.card-details__popularity, 
+.card-details__genre {
+  display: flex;
+  padding-left: 15px;
+}
+
+.card-details__votes--title, 
+.card-details__name--title,
+.card-details__popularity--title, 
+.card-details__genre--title {
+  width: 50%;
+}
+
+.card-details__votes, 
+.card-details__name {
+  background-color: rgb(173, 218, 214)
+}
+
+.card-details__about--text,
+.card-details__action-text {
   font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400; 
   font-size: 14px;
-  font-weight: 400;
-  
-  margin: 0 auto;
-  text-decoration: none;
+  line-height: 18px;
+  color: rgb(55, 44, 72);
+  margin-bottom: 12px;
+}
+
+/* .card-details__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+} */
+
+.card-details__action-btn {
+  display: block;
+  margin: 0;
+  border: none;
+  background: none;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.card-details__action-btn:hover {
+  cursor: pointer;
+}
+
+
+/* .card-details__action text {
+
+} */
+
+@media (min-width: 768px) {
+
 }
