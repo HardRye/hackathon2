@@ -23,12 +23,14 @@
 }
 
 .search {
-    box-shadow: 0px 5px 9px 1px rgba(0, 0, 0, 0.23);
+		box-shadow: 0px 5px 9px 1px rgba(0, 0, 0, 0.23);
+		margin-bottom: 30px;
 }
 
 .button_page {
     margin: 0 auto;
-    width: 253px;
+		width: 253px;
+		margin-bottom: 20px;
 }
 
 .page_prev {
@@ -111,26 +113,46 @@
     top: 1px;
 }
 
+
 .filmList {
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style: none;
-    &__item {
-        position: relative;
-        width: 299px;
-        height: 157px;
-        margin-bottom: 12px;
-        border-radius: 10px;
-        cursor: pointer;
-        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, 1)), url(../images/poster1.jpg);
+	margin: 0 auto;
+	width: 320px;
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: center;
+	list-style: none;
+
+	&__poster {
+		width: 100%;
+	}
+
+  &__item {   
+    position: relative;
+    width: 300px; 
+    margin-bottom: 12px;
+    border-radius: 10px; 
+    cursor: pointer; 
+
+    &::before {
+      position: absolute;
+      display: block;
+      content: "";
+      width: 300px;
+      height: 100%; 
+			border-radius: 10px; 
+      background-image: linear-gradient(to bottom,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0) 60%,
+      rgba(0,0,0,1));
+      z-index: 1;
     }
+  }
+
 }
 
 .item__name {
     position: absolute;
-    bottom: 10px;
+    bottom: 6px;
     left: 10px;
     z-index: 2;
     color: #fff;
@@ -145,8 +167,12 @@
         justify-content: space-between;
         &__item {
             width: 346px;
-            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, 1)), url(../images/poster1@768.jpg);
-        }
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, 1));
+				
+						&::before {
+							width: 346px;
+						}
+					}
     }
     .item__name {
         font-size: 14.3px;
@@ -156,15 +182,19 @@
 
 @media (min-width: 1024px) {
     .filmList {
-        width: 716px;
-        justify-content: space-between;
+				width: 964px;
+				
         &__item {
-            width: 346px;
-            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, 1)), url(../images/poster1@768.jpg);
+            width: 468px;
+						background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, 1));	
+									
+						&::before {
+							width: 468px;
+						}
         }
     }
     .item__name {
-        font-size: 14.3px;
-        bottom: 8px;
+        font-size: 19.2px;
+        bottom: 10px;
     }
 }
