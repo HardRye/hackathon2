@@ -2,7 +2,7 @@ const btnHome = document.querySelector('.header__link--home');
 const btnLibrary = document.querySelector('.header__link--library');
 const sectionMain = document.querySelector('.home-page');
 const sectionCard = document.querySelector('.card');
-const sectionLibrary = document.querySelector('.myFilmLibraryPage__container');
+const sectionLibrary = document.querySelector('main > .myFilmLibraryPage__container');
 const btnFavourites = document.querySelector('.myFilmLibraryPage__buttonFavourites');
 const btnQueue = document.querySelector('.myFilmLibraryPage__buttonQueue');
 const btnAddToFavourite = document.querySelector('.card-details__AddToFavourite');
@@ -24,6 +24,12 @@ const activeLibraryPage = () => {
   sectionCard.classList.add('non-active-section');
   sectionMain.classList.add('non-active-section');
   sectionLibrary.classList.remove('non-active-section');
+}
+
+const activeDetailsPage = (movieId, itsLibraryFilm) => {
+  sectionCard.classList.remove('non-active-section');
+  sectionMain.classList.add('non-active-section');
+  sectionLibrary.classList.add('non-active-section');
 }
 
 const chooseActiveLink = evt => {
