@@ -58,8 +58,11 @@
 .myFilmLibraryPage__film-title {
   color: red;
   font-family: 'Roboto';
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
 }
 
 .myFilmLibraryPage__rating {
@@ -98,6 +101,16 @@
 
   .myFilmLibraryPage__film-card {
     width: 346px;
+  }
+
+  .myFilmLibraryPage__film-title {
+    color: red;
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
   }
 }
 
