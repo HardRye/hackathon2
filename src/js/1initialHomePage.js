@@ -25,7 +25,7 @@ const createCardFunc = (imgPath, filmTitle, movieId) => {
 
   const filmListItem = document.createElement('li');
   filmListItem.classList.add('filmList__item')
-  filmList.setAttribute('data-id', movieId)
+  filmListItem.setAttribute('data-id', movieId)
 
   const filmListPoster = document.createElement('img');
   filmListPoster.classList.add('filmList__poster');
@@ -65,7 +65,7 @@ const fetchPopularMoviesList = (page = 1) => {
       )
       filmList.innerHTML = "";
       filmList.append(fragment);
-
+      filmList.addEventListener('click', activeDetailsPage)
     }
     )
     .catch(console.log)
