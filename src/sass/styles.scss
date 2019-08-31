@@ -2,8 +2,11 @@
    Import partials below
 */
 @import './reset';
-
 @import './normalize';
+
+
+@import "./fonts";
+
 
 @import './user_styles/header.scss'; 
 @import './user_styles/footer.scss'; 
