@@ -1,0 +1,32 @@
+.container {
+  width: 500px;
+  display: flex;
+}
+
+.somesection {
+  display: block;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.head {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.text {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 auto;
+}
+
+.link {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 400;
+  
+  margin: 0 auto;
+  text-decoration: none;
+}
