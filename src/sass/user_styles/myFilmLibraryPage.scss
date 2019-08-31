@@ -2,21 +2,6 @@
   display: block;
   margin: 0 auto;
   width: 320px;
-  height: 100vh;
-}
-
-.myFilmLibraryPage__header {
-  display: block;
-  width: 100%;
-  height: 66px;
-  background-color: turquoise;
-}
-
-.myFilmLibraryPage__footer {
-  display: block;
-  width: 100%;
-  height: 66px;
-  background-color: turquoise;
 }
 
 .myFilmLibraryPage__modes {
@@ -85,7 +70,6 @@
   .myFilmLibraryPage__container {
     margin: 0 auto;
     width: 768px;
-    height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -118,7 +102,6 @@
   .myFilmLibraryPage__container {
     margin: 0 auto;
     width: 1024px;
-    height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
