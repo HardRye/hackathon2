@@ -86,5 +86,5 @@ const fetchGenres = () => {
 
 
 // - запускаем функцию fetchPopularMoviesList и fetchGenres. 
-fetchPopularMoviesList();
+fetchPopularMoviesList(); // функция должна(?) принимать значение pageNum 
 fetchGenres();

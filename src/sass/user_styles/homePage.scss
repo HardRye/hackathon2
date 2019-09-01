@@ -134,6 +134,10 @@
     border-radius: 10px; 
     cursor: pointer; 
 
+    &:last-child {
+      margin-bottom: 0;
+    }
+
     &::before {
       position: absolute;
       display: block;
@@ -167,9 +171,13 @@
         width: 716px;
         justify-content: space-between;
         &__item {
-            width: 346px;
-            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, 1));
-				
+          width: 346px;
+          background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, 1));
+        
+          &:nth-last-child(-n + 2) {
+            margin-bottom: 0;
+          }
+
 						&::before {
 							width: 346px;
 						}
