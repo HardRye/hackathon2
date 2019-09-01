@@ -1,22 +1,11 @@
 .myFilmLibraryPage__container {
-  display: block;
   margin: 0 auto;
-  width: 320px;
-  height: 100vh;
+  width: 300px;
 }
 
-.myFilmLibraryPage__header {
-  display: block;
-  width: 100%;
-  height: 66px;
-  background-color: turquoise;
-}
-
-.myFilmLibraryPage__footer {
-  display: block;
-  width: 100%;
-  height: 66px;
-  background-color: turquoise;
+li {
+  list-style-type: none;
+  position: relative;
 }
 
 .myFilmLibraryPage__modes {
@@ -39,6 +28,10 @@
   border-bottom: 2px solid grey;
 }
 
+.button__colored {
+  background-color: turquoise;
+} /*//////////////////////////////////////////*/
+
 .myFilmLibraryPage__modes button:hover {
   background-color: turquoise;
   color: #fff;
@@ -56,7 +49,7 @@
 }
 
 .myFilmLibraryPage__film-title {
-  color: red;
+  color: #fff;
   font-family: 'Roboto';
   font-size: 20px;
   font-weight: 400;
@@ -85,10 +78,6 @@
   .myFilmLibraryPage__container {
     margin: 0 auto;
     width: 768px;
-    height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
   }
 
   .myFilmLibraryPage__rating {
@@ -100,11 +89,17 @@
   }
 
   .myFilmLibraryPage__film-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .myFilmLibraryPage__film-card li {
     width: 346px;
   }
 
   .myFilmLibraryPage__film-title {
-    color: red;
+    color: #fff;
     font-family: 'Roboto';
     font-size: 20px;
     font-weight: 400;
@@ -118,13 +113,18 @@
   .myFilmLibraryPage__container {
     margin: 0 auto;
     width: 1024px;
-    height: 100vh;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-evenly;
+  }
+
+  .myFilmLibraryPage__film-card {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
 
-  .myFilmLibraryPage__film-card {
+  .myFilmLibraryPage__film-card li {
     width: 466px;
   }
 }
