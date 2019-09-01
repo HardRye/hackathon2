@@ -16,7 +16,7 @@ const cardDetailsAbout = detailsCard.querySelector(
   '.card-details__about--text',
 );
 
-const addToFavBtn = actionBtnsForm.querySelector(
+const addToFavBtn = detailsCard.querySelector(
   "button[data-action='add-to-favorite']",
 );
 const delFromFavBtn = actionBtnsForm.querySelector(
@@ -28,9 +28,18 @@ const addToQueueBtn = actionBtnsForm.querySelector(
 const delFromQueueBtn = actionBtnsForm.querySelector(
   "button[data-action='delete-from-queue']",
 );
+let filmsQueue, filmsWatched;
+if (localStorage.getItem('filmsQueue')) {
+  filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+} else {
+  filmsQueue = [];
+}
 
-let filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
-let filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
+if (localStorage.getItem('filmsWatched')) {
+  filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
+} else {
+  filmsWatched = [];
+}
 
 const toggleBtn = (btnToShow, btnToHide) => {
   btnToShow.classList.remove('hide');
@@ -38,6 +47,8 @@ const toggleBtn = (btnToShow, btnToHide) => {
   btnToHide.classList.remove('show');
   btnToHide.classList.add('hide');
 };
+
+detailsCard.dataset.id = selectFilm.id;
 
 const monitorButtonStatusText = () => {
   if (filmsQueue && filmsQueue.find(film => film.id === selectFilm.id)) {
@@ -63,6 +74,7 @@ const toggleToQueue = ({ target }) => {
 
   if (filmsQueue.find(film => film.id === selectFilm.id)) {
     filmsQueue = filmsQueue.filter(film => film.id !== selectFilm.id);
+    console.log(filmsQueue);
   } else {
     filmsQueue.push(selectFilm);
   }
@@ -86,6 +98,7 @@ const toggleToWatched = ({ target }) => {
 
   if (filmsWatched.find(film => film.id === selectFilm.id)) {
     filmsWatched = filmsWatched.filter(film => film.id !== selectFilm.id);
+    console.log(filmsWatched);
   } else {
     filmsWatched.push(selectFilm);
   }
@@ -119,6 +132,8 @@ const showDetails = selectFilm => {
 
   monitorButtonStatusText();
 };
+
+monitorButtonStatusText();
 
 actionBtnsForm.addEventListener('click', toggleToQueue);
 actionBtnsForm.addEventListener('click', toggleToWatched);
