@@ -237,7 +237,8 @@ function activeHomePage() {
 function activeLibraryPage() {
   sectionCard.classList.add('non-active-section');
   sectionMain.classList.add('non-active-section');
-  sectionLibrary.classList.remove('non-active-section'); // form.removeEventListener(searchFilms)
+  sectionLibrary.classList.remove('non-active-section');
+  drawWatchedFilmList(); // form.removeEventListener(searchFilms)
   // containerBtn.removeEventListener(plaginationNavigation);
   // actionBtnsForm.removeEventListener(toggleToQueue);
   // actionBtnsForm.removeEventListener(toggleToWatched);

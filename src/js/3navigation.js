@@ -29,7 +29,7 @@ function activeLibraryPage() {
   sectionCard.classList.add('non-active-section');
   sectionMain.classList.add('non-active-section');
   sectionLibrary.classList.remove('non-active-section');
-
+  drawWatchedFilmList();
   // form.removeEventListener(searchFilms)
   // containerBtn.removeEventListener(plaginationNavigation);
   // actionBtnsForm.removeEventListener(toggleToQueue);
@@ -82,7 +82,7 @@ function activeDetailsPage(movieId, itsLibraryFilm) {
 
   } else {
     selectFilm = renderFilms.find(item => item.id === Number(movieId));
-    if(!selectFilm) {
+    if (!selectFilm) {
       selectFilm = findFilms.find(item => item.id === Number(movieId));
     }
   }
