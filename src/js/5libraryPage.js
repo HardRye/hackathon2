@@ -35,18 +35,36 @@ const drawWatchedFilmList = function() {
   favouriteButton.classList.add('button__colored');
   queueButton.classList.remove('button__colored');
   queueButton.classList.add('button__white');
+
   const fragment = document.createDocumentFragment();
-  // console.log(localStorage.getItem('filmsWatched'));
-  // const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
+
   if (localStorage.getItem('filmsWatched') === null) {
-    return console.log(
-      'You do not have watched movies. Add them.',
-    ); /******************** */
+    const fragment = document.createDocumentFragment();
+
+    const emptyStorage = document.createElement('h2');
+    emptyStorage.classList.add('storage__empty');
+    emptyStorage.textContent = 'You do not have favourite movies. Add them.';
+
+    fragment.append(emptyStorage);
+    films.innerHTML = '';
+    films.append(fragment);
+    return;
   }
+
   const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
+
   if (favouriteMovies.length === 0) {
-    return console.log('You do not have watched movies. Add them.');
+    const fragment = document.createDocumentFragment();
+
+    const emptyStorage = document.createElement('h2');
+    emptyStorage.classList.add('storage__empty');
+    emptyStorage.textContent = 'You do not have favourite movies. Add them.';
+    fragment.append(emptyStorage);
+    films.innerHTML = '';
+    films.append(fragment);
+    return;
   }
+
   favouriteMovies.forEach(el =>
     fragment.append(
       createLibraryCardFunc(
@@ -68,23 +86,38 @@ const drawQueueFilmList = function() {
   queueButton.classList.add('button__colored');
   favouriteButton.classList.remove('button__colored');
   favouriteButton.classList.add('button__white');
+
   const fragment = document.createDocumentFragment();
 
   if (localStorage.getItem('filmsQueue') === null) {
-    return console.log(
-      'You do not have to queue movies to watch. Add them.',
-    ); /******************** */
+    const fragment = document.createDocumentFragment();
+
+    const emptyStorage = document.createElement('h2');
+    emptyStorage.classList.add('storage__empty');
+    emptyStorage.textContent =
+      'You do not have to queue movies to watch. Add them.';
+
+    fragment.append(emptyStorage);
+    films.innerHTML = '';
+    films.append(fragment);
+    return;
   }
+
   const queueMovies = JSON.parse(localStorage.getItem('filmsQueue'));
+
   if (queueMovies.length === 0) {
-    return console.log('You do not have to queue movies to watch. Add them.');
-  } /************************ */
-  // const queueMovies = JSON.parse(localStorage.getItem('filmsQueue'));
-  // if (queueMovies === null || queueMovies.length === 0) {
-  //   return console.log(
-  //     'You do not have to queue movies to watch. Add them.',
-  //   );
-  // }
+    const fragment = document.createDocumentFragment();
+
+    const emptyStorage = document.createElement('h2');
+    emptyStorage.classList.add('storage__empty');
+    emptyStorage.textContent =
+      'You do not have to queue movies to watch. Add them.';
+    fragment.append(emptyStorage);
+    films.innerHTML = '';
+    films.append(fragment);
+    return;
+  }
+
   queueMovies.forEach(el =>
     fragment.append(
       createLibraryCardFunc(
