@@ -65,7 +65,10 @@ const fetchPopularMoviesList = (page = 1) => {
             createCardFunc(el.backdrop_path, el.original_title, el.id))
         } else if (el.poster_path !== 'null') {
           fragment.append(
-            createCardFunc(el.backdrop_path, el.original_title, el.id))
+            createCardFunc(el.poster_path, el.original_title, el.id))
+        } else {
+          fragment.append(
+            createCardFunc('../images/default_image.png', el.original_title, el.id))
         }
       })
 
