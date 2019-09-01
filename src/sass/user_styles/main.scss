@@ -7,6 +7,10 @@
   border-bottom: 3px solid #372c48;
 }
 
+main {
+  min-height: calc(100vh - 86px - 64px);
+}
+
 // @media (min-width: 768px) {
 //   .non-active-section {
 //     display: none;

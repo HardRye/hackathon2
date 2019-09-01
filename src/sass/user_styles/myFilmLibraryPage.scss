@@ -112,7 +112,7 @@ li {
 @media (min-width: 768px) {
   .myFilmLibraryPage__container {
     margin: 0 auto;
-    width: 768px;
+    width: 710px;
   }
 
   .myFilmLibraryPage__rating {
@@ -126,7 +126,7 @@ li {
   .myFilmLibraryPage__film-card {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   .myFilmLibraryPage__film-card li {
@@ -148,13 +148,13 @@ li {
 @media (min-width: 1024px) {
   .myFilmLibraryPage__container {
     margin: 0 auto;
-    width: 1024px;
+    width: 956px;
   }
 
   .myFilmLibraryPage__film-card {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   .myFilmLibraryPage__film-card li {

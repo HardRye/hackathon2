@@ -11,58 +11,59 @@ let findFilms = [];
 btnPageNumber.innerText = pageNumber;
 
 if (pageNumber === 1) {
-    btnPrev.classList.add('disable')
+  btnPrev.classList.add('disable')
 }
 
 
 function fetchFilms() {
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=9e008f5d338cd1f22f432e50e537417d&language=en-US&query=${inputValue}&page=${pageNumber}&include_adult=false`)
-        .then(response => response.json())
-        .then(data => {
-            findFilms = data.results;
-           console.log(findFilms);
-            if (!data.results.length) {
-                const warning = document.createElement('p');
-                warning.classList.add('warning');
-                warning.textContent = 'Enter correct query!!!';
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=9e008f5d338cd1f22f432e50e537417d&language=en-US&query=${inputValue}&page=${pageNumber}&include_adult=false`)
+    .then(response => response.json())
+    .then(data => {
+      findFilms = data.results;
+      //    console.log(findFilms);
+      if (!data.results.length) {
+        const warning = document.createElement('p');
+        warning.classList.add('warning');
+        warning.textContent = 'Enter correct query!!!';
 
-                document.querySelector('.search').insertBefore(warning, document.querySelector('.filmList'));
+        document.querySelector('.search').insertBefore(warning, document.querySelector('.filmList'));
 
-                setTimeout(() => {
-                    warning.remove();
-                }, 2000);
-            } else {
-                document.querySelector('.filmList').innerHTML = '';
+        setTimeout(() => {
+          warning.remove();
+        }, 2000);
+      } else {
+        document.querySelector('.filmList').innerHTML = '';
 
 
-                data.results.map(el => {
-                    const moviePath = `${el.backdrop_path}`;
-                    const movieTitle = `${el.title} (${el.release_date.slice(0, 4)})`;
-                    const movieId = el.id;
+        data.results.map(el => {
+          const moviePath = `${el.backdrop_path}`;
+          const movieYear = el.release_date ? `(${el.release_date.substr(0, 4)})` : "";
+          const movieTitle = `${el.title} ${movieYear}`;
+          const movieId = el.id;
 
-                    document.querySelector('.filmList').appendChild(createCardFunc(moviePath, movieTitle, movieId));
-                });
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        })
+          document.querySelector('.filmList').appendChild(createCardFunc(moviePath, movieTitle, movieId));
+        });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
 }
 
 
 
 function searchFilms(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    inputValue = input.value;
-    pageNumber = 1;
-    btnPageNumber.innerText = pageNumber;
-    btnPrev.classList.remove('active');
-    btnPrev.classList.add('disable');
+  inputValue = input.value;
+  pageNumber = 1;
+  btnPageNumber.innerText = pageNumber;
+  btnPrev.classList.remove('active');
+  btnPrev.classList.add('disable');
 
-    fetchFilms();
+  fetchFilms();
 
-    e.target.reset();
+  e.target.reset();
 }
 
 
@@ -74,25 +75,27 @@ function scrollToTop() {
   }
 
 function plaginationNavigation(e) {
+
     if (e.target.classList.contains('page_prev')) {
         if (pageNumber > 1) {
             scrollToTop()
             btnPageNumber.innerText--;
             pageNumber--;
 
-            if (inputValue) {
-                fetchFilms();
-            } else fetchPopularMoviesList(pageNumber);
+
+      if (inputValue) {
+        fetchFilms();
+      } else fetchPopularMoviesList(pageNumber);
 
 
 
-            if (pageNumber === 1) {
-                btnPrev.classList.remove('active');
-                btnPrev.classList.add('disable');
-            }
+      if (pageNumber === 1) {
+        btnPrev.classList.remove('active');
+        btnPrev.classList.add('disable');
+      }
 
-        }
     }
+  }
 
     if (e.target.classList.contains('page_next')) {
         scrollToTop()
@@ -100,10 +103,10 @@ function plaginationNavigation(e) {
         btnPageNumber.innerText++;
         pageNumber++;
 
-        if (inputValue) {
-            fetchFilms();
-        } else fetchPopularMoviesList(pageNumber);
-    }
+    if (inputValue) {
+      fetchFilms();
+    } else fetchPopularMoviesList(pageNumber);
+  }
 }
 
 form.addEventListener('submit', searchFilms);

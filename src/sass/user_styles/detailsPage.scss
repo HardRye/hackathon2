@@ -55,6 +55,13 @@
   width: 136px;
 }
 
+.card-details__votes--value,
+.card-details__name--value,
+.card-details__popularity--value,
+.card-details__genre--value {
+  max-width: 130px;
+}
+
 .card-details__votes,
 .card-details__name {
   background-color: rgb(173, 218, 214);
@@ -119,6 +126,13 @@
     width: 168px;
   }
 
+  .card-details__votes--value,
+  .card-details__name--value,
+  .card-details__popularity--value,
+  .card-details__genre--value {
+    max-width: 150px;
+  }
+
   .card-details__description,
   .card-details__about {
     margin-bottom: 30px;
@@ -154,6 +168,13 @@
   .card-details__popularity--title,
   .card-details__genre--title {
     width: 214px;
+  }
+
+  .card-details__votes--value,
+  .card-details__name--value,
+  .card-details__popularity--value,
+  .card-details__genre--value {
+    max-width: 200px;
   }
 
   .card-details__actions {
