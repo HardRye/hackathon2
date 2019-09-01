@@ -128,6 +128,8 @@ const toggleToWatched = ({ target }) => {
 };
 
 const showDetails = selectFilm => {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   detailsCard.dataset.id = selectFilm.id;
   posterImg.src = `https://image.tmdb.org/t/p/w500${selectFilm.poster_path}`;
   posterImg.alt = selectFilm.original_title;
