@@ -5,16 +5,10 @@ const sectionCard = document.querySelector('.film-card');
 const sectionLibrary = document.querySelector('main > .myFilmLibraryPage__container');
 const btnFavourites = document.querySelector('.myFilmLibraryPage__buttonFavourites');
 const btnQueue = document.querySelector('.myFilmLibraryPage__buttonQueue');
-const btnAddToFavourite = document.querySelector(
-  '.card-details__AddToFavourite',
-);
-const btnRemoveFromFavourite = document.querySelector(
-  '.card-details__RemoveFromFavourite',
-);
+const btnAddToFavourite = document.querySelector('.card-details__AddToFavourite');
+const btnRemoveFromFavourite = document.querySelector('.card-details__RemoveFromFavourite');
 const btnAddToQueue = document.querySelector('.card-details__AddToQueue');
-const btnRemoveFromQueue = document.querySelector(
-  '.card-details__RemoveFromQueue',
-);
+const btnRemoveFromQueue = document.querySelector('.card-details__RemoveFromQueue');
 const headerNav = document.querySelector('.header__nav');
 const headerLogo = document.querySelector('.header__logo');
 
@@ -24,52 +18,33 @@ function activeHomePage() {
   sectionCard.classList.add('non-active-section');
   sectionLibrary.classList.add('non-active-section');
   sectionMain.classList.remove('non-active-section');
+
+  // actionBtnsForm.removeEventListener(toggleToQueue);
+  // actionBtnsForm.removeEventListener(toggleToWatched);
+  // favouriteButton.removeEventListener(drawWatchedFilmList);
+  // queueButton.removeEventListener(drawQueueFilmList);
 }
 
 function activeLibraryPage() {
   sectionCard.classList.add('non-active-section');
   sectionMain.classList.add('non-active-section');
   sectionLibrary.classList.remove('non-active-section');
+
+  // form.removeEventListener(searchFilms)
+  // containerBtn.removeEventListener(plaginationNavigation);
+  // actionBtnsForm.removeEventListener(toggleToQueue);
+  // actionBtnsForm.removeEventListener(toggleToWatched);
 }
-
-// function activeDetailsPageListener(e) {
-//   sectionCard.classList.remove('non-active-section');
-//   sectionMain.classList.add('non-active-section');
-//   sectionLibrary.classList.add('non-active-section');
-
-//   if (e.currentTarget.dataset.name === 'home') {
-//     activeDetailsPage(e.target.dataset.id, false);
-//   } else if (e.currentTarget.dataset.name === 'favourites') {
-//     try {
-//       const filmsFromLocalWatched = localStorage.getItem('filmsWatched');
-//       if(filmsFromLocalWatched) {
-//         const filmsFromLocalWatchedArr = JSON.parse(filmsFromLocalWatched);
-//         activeDetailsPage(e.target.dataset.id, true);
-//         return filmsFromLocalWatchedArr;
-//       }
-//     } catch (err) {
-//       console.error(err);
-//     }
-
-//   } else if (e.currentTarget.dataset.name === 'queue') {
-//     try {
-//       const filmsFromLocalQueue = localStorage.getItem('filmsQueue');
-//       if(filmsFromLocalQueue) {
-//         const filmsFromLocalQueueArr = JSON.parse(filmsFromLocalQueue);
-//         console.log(filmsFromLocalQueueArr);
-//         activeDetailsPage(e.target.dataset.id, true);
-//         return filmsFromLocalQueueArr;
-//       }
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   }
-// }
 
 function activeDetailsPageListener(e) {
   sectionCard.classList.remove('non-active-section');
   sectionMain.classList.add('non-active-section');
   sectionLibrary.classList.add('non-active-section');
+
+  // form.removeEventListener(searchFilms)
+  // containerBtn.removeEventListener(plaginationNavigation);
+  // favouriteButton.removeEventListener(drawWatchedFilmList);
+  // queueButton.removeEventListener(drawQueueFilmList);
 
   if (e.currentTarget.dataset.name === 'home') {
     activeDetailsPage(e.target.dataset.id, false);
