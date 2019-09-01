@@ -74,7 +74,9 @@ function plaginationNavigation(e) {
             btnPageNumber.innerText--;
             pageNumber--;
 
-            fetchFilms();
+            if (inputValue) {
+                fetchFilms();
+            } else fetchPopularMoviesList(pageNumber);
 
 
 
@@ -91,8 +93,9 @@ function plaginationNavigation(e) {
         btnPageNumber.innerText++;
         pageNumber++;
 
-        fetchFilms();
-
+        if (inputValue) {
+            fetchFilms();
+        } else fetchPopularMoviesList(pageNumber);
     }
 }
 
