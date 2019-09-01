@@ -41,11 +41,38 @@ function fetchFilms() {
           const movieTitle = `${el.title} ${movieYear}`;
           const movieId = el.id;
 
+          btnPageNumber.classList.add('active')
+          btnNext.classList.add('active')
           document.querySelector('.filmList').appendChild(createCardFunc(moviePath, movieTitle, movieId));
         });
       }
     })
     .catch(err => {
+      // alert('Sorry, we could not find film by your query')
+      const fragment = document.createDocumentFragment();
+
+      const filmListErrorTitle = document.createElement('h2');
+      filmListErrorTitle.classList.add('filmList__error');
+      filmListErrorTitle.textContent = "Oops, something went wrong";
+      fragment.append(filmListErrorTitle);
+
+      const filmListErrorText = document.createElement('h3');
+      filmListErrorText.classList.add('filmList__error');
+      filmListErrorText.textContent = "We could not find movie";
+      fragment.append(filmListErrorText);
+
+      const filmListErrorReason = document.createElement('p');
+      filmListErrorReason.classList.add('filmList__error');
+      filmListErrorReason.textContent = 'Try again';
+      fragment.append(filmListErrorReason);
+
+      btnPrev.classList.add('disable')
+      btnPageNumber.classList.add('disable')
+      btnNext.classList.add('disable')
+
+      filmList.innerHTML = "";
+      filmList.append(fragment);
+
       console.log(err);
     })
 }
@@ -68,19 +95,19 @@ function searchFilms(e) {
 
 
 function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
 
 function plaginationNavigation(e) {
 
-    if (e.target.classList.contains('page_prev')) {
-        if (pageNumber > 1) {
-            scrollToTop()
-            btnPageNumber.innerText--;
-            pageNumber--;
+  if (e.target.classList.contains('page_prev')) {
+    if (pageNumber > 1) {
+      scrollToTop()
+      btnPageNumber.innerText--;
+      pageNumber--;
 
 
       if (inputValue) {
@@ -97,11 +124,11 @@ function plaginationNavigation(e) {
     }
   }
 
-    if (e.target.classList.contains('page_next')) {
-        scrollToTop()
-        btnPrev.classList.add('active');
-        btnPageNumber.innerText++;
-        pageNumber++;
+  if (e.target.classList.contains('page_next')) {
+    scrollToTop()
+    btnPrev.classList.add('active');
+    btnPageNumber.innerText++;
+    pageNumber++;
 
     if (inputValue) {
       fetchFilms();
