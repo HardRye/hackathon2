@@ -1,4 +1,4 @@
-const detailsCard = document.querySelector('.card');
+const detailsCard = document.querySelector('.film-card');
 const actionBtnsForm = document.querySelector('.card-details__actions');
 const addToFavBtn = actionBtnsForm.querySelector(
   "button[data-action='add-to-favorite']",
@@ -14,7 +14,7 @@ const delFromQueueBtn = actionBtnsForm.querySelector(
 );
 
 let filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
-let filmsFavorite = JSON.parse(localStorage.getItem('filmsFavorite'));
+let filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
 
 const toggleBtn = (btnToShow, btnToHide) => {
   btnToShow.classList.remove('hide');
@@ -22,21 +22,23 @@ const toggleBtn = (btnToShow, btnToHide) => {
   btnToHide.classList.remove('show');
   btnToHide.classList.add('hide');
 };
+
 //try
-const selectFilm = {
+const selectFilm1 = {
   id: '123',
 };
 //try
-detailsCard.dataset.id = selectFilm.id;
+
+detailsCard.dataset.id = selectFilm1.id;
 
 const monitorButtonStatusText = () => {
-  if (filmsQueue && filmsQueue.includes(detailsCard.dataset.id)) {
+  if (filmsQueue && filmsQueue.find(film => film.id === selectFilm1.id)) {
     toggleBtn(delFromQueueBtn, addToQueueBtn);
   } else {
     toggleBtn(addToQueueBtn, delFromQueueBtn);
   }
 
-  if (filmsFavorite && filmsFavorite.includes(detailsCard.dataset.id)) {
+  if (filmsWatched && filmsWatched.find(film => film.id === selectFilm1.id)) {
     toggleBtn(delFromFavBtn, addToFavBtn);
   } else {
     toggleBtn(addToFavBtn, delFromFavBtn);
@@ -51,20 +53,11 @@ const toggleToQueue = ({ target }) => {
     return;
   if (!filmsQueue) filmsQueue = [];
 
-  switch (target.parentNode.dataset.action) {
-    case 'add-to-queue':
-      toggleBtn(delFromQueueBtn, addToQueueBtn);
-      break;
-    case 'delete-from-queue':
-      toggleBtn(addToQueueBtn, delFromQueueBtn);
-      break;
-  }
-
-  if (filmsQueue.includes(detailsCard.dataset.id)) {
-    filmsQueue = filmsQueue.filter(id => id !== detailsCard.dataset.id);
+  if (filmsQueue.find(film => film.id === selectFilm1.id)) {
+    filmsQueue = filmsQueue.filter(film => film.id !== selectFilm1.id);
     console.log(filmsQueue);
   } else {
-    filmsQueue.push(detailsCard.dataset.id);
+    filmsQueue.push(selectFilm1);
   }
 
   if (filmsQueue.length) {
@@ -72,40 +65,35 @@ const toggleToQueue = ({ target }) => {
   } else {
     localStorage.removeItem('filmsQueue');
   }
+
+  monitorButtonStatusText();
 };
 
-const toggleFavorites = ({ target }) => {
+const toggleToWatched = ({ target }) => {
   if (
     target.parentNode.dataset.action !== 'add-to-favorite' &&
     target.parentNode.dataset.action !== 'delete-from-favorite'
   )
     return;
-  if (!filmsFavorite) filmsFavorite = [];
+  if (!filmsWatched) filmsWatched = [];
 
-  switch (target.parentNode.dataset.action) {
-    case 'add-to-favorite':
-      toggleBtn(delFromFavBtn, addToFavBtn);
-      break;
-    case 'delete-from-favorite':
-      toggleBtn(addToFavBtn, delFromFavBtn);
-      break;
-  }
-
-  if (filmsFavorite.includes(detailsCard.dataset.id)) {
-    filmsFavorite = filmsFavorite.filter(id => id !== detailsCard.dataset.id);
-    console.log(filmsFavorite);
+  if (filmsWatched.find(film => film.id === selectFilm1.id)) {
+    filmsWatched = filmsWatched.filter(film => film.id !== selectFilm1.id);
+    console.log(filmsWatched);
   } else {
-    filmsFavorite.push(detailsCard.dataset.id);
+    filmsWatched.push(selectFilm1);
   }
 
-  if (filmsFavorite.length) {
-    localStorage.setItem('filmsFavorite', JSON.stringify(filmsFavorite));
+  if (filmsWatched.length) {
+    localStorage.setItem('filmsWatched', JSON.stringify(filmsWatched));
   } else {
-    localStorage.removeItem('filmsFavorite');
+    localStorage.removeItem('filmsWatched');
   }
+
+  monitorButtonStatusText();
 };
 
 monitorButtonStatusText();
 
 actionBtnsForm.addEventListener('click', toggleToQueue);
-actionBtnsForm.addEventListener('click', toggleFavorites);
+actionBtnsForm.addEventListener('click', toggleToWatched);
