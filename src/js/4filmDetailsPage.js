@@ -29,16 +29,25 @@ const delFromQueueBtn = actionBtnsForm.querySelector(
   "button[data-action='delete-from-queue']",
 );
 let filmsQueue, filmsWatched;
-if (localStorage.getItem('filmsQueue')) {
-  filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
-} else {
-  filmsQueue = [];
+
+try {
+  if (localStorage.getItem('filmsQueue')) {
+    filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+  } else {
+    filmsQueue = [];
+  }
+} catch (error) {
+  throw error;
 }
 
-if (localStorage.getItem('filmsWatched')) {
-  filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
-} else {
-  filmsWatched = [];
+try {
+  if (localStorage.getItem('filmsWatched')) {
+    filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
+  } else {
+    filmsWatched = [];
+  }
+} catch (error) {
+  throw error;
 }
 
 const toggleBtn = (btnToShow, btnToHide) => {
@@ -47,8 +56,6 @@ const toggleBtn = (btnToShow, btnToHide) => {
   btnToHide.classList.remove('show');
   btnToHide.classList.add('hide');
 };
-
-detailsCard.dataset.id = selectFilm.id;
 
 const monitorButtonStatusText = () => {
   if (filmsQueue && filmsQueue.find(film => film.id === selectFilm.id)) {
@@ -114,7 +121,7 @@ const toggleToWatched = ({ target }) => {
 
 const showDetails = selectFilm => {
   detailsCard.dataset.id = selectFilm.id;
-  posterImg.src = selectFilm.poster_path;
+  posterImg.src = `https://image.tmdb.org/t/p/w500${selectFilm.poster_path}`;
   posterImg.alt = selectFilm.original_title;
   cardDetailsTitle.textContent = selectFilm.original_title;
   cardDetailsVotes.textContent = `${selectFilm.vote_average} / ${selectFilm.vote_count}`;
