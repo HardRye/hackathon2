@@ -1,3 +1,4 @@
+const btnFix = document.querySelector('.button-fix');
 const detailsCard = document.querySelector('.card-details');
 const actionBtnsForm = document.querySelector('.card-details__actions');
 const posterImg = detailsCard.querySelector('.card-details__img');
@@ -149,3 +150,12 @@ const showDetails = selectFilm => {
 
 actionBtnsForm.addEventListener('click', toggleToQueue);
 actionBtnsForm.addEventListener('click', toggleToWatched);
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
+
+btnFix.addEventListener('click', scrollToTop);
