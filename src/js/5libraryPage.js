@@ -12,7 +12,7 @@ const createLibraryCardFunc = function(
 ) {
   const card = document.createElement('li');
   card.classList.add('film');
-  card.classList.add('data-id', movieId);
+  card.setAttribute('data-id', movieId);
 
   const image = document.createElement('img');
   image.setAttribute('src', 'https://image.tmdb.org/t/p/' + 'w500' + imgPath);
@@ -57,7 +57,7 @@ const drawWatchedFilmList = function() {
       ),
     ),
   );
-  films.classList.add('data-name', 'favourites');
+  films.setAttribute('data-name', 'favourites');
   films.innerHTML = '';
   films.append(fragment);
   films.addEventListener('click', activeDetailsPageListener);
@@ -95,7 +95,7 @@ const drawQueueFilmList = function() {
       ),
     ),
   );
-  films.classList.add('data-name', 'queue');
+  films.setAttribute('data-name', 'queue');
   films.innerHTML = '';
   films.append(fragment);
   films.addEventListener('click', activeDetailsPageListener);
