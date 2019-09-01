@@ -19,21 +19,25 @@ li {
 .myFilmLibraryPage__modes button {
   width: 142px;
   height: 42px;
-  background: none;
   font-family: 'Roboto';
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
+}
+
+.button__white {
+  background: none;
   border: none;
   border-bottom: 2px solid grey;
 }
 
 .button__colored {
-  background-color: turquoise;
-} /*//////////////////////////////////////////*/
+  background-color: #77c1bb;
+  border: none;
+}
 
 .myFilmLibraryPage__modes button:hover {
-  background-color: turquoise;
+  background-color: #77c1bb;
   color: #fff;
   border: none;
   transition: 0.2s;
