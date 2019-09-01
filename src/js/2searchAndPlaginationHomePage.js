@@ -7,7 +7,7 @@ const btnPageNumber = document.querySelector('.number_page');
 const containerBtn = document.querySelector('.button_page');
 
 pageNumber = 1;
-
+let findFilms = [];
 btnPageNumber.innerText = pageNumber;
 
 if (pageNumber === 1) {
@@ -19,6 +19,8 @@ function fetchFilms() {
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=9e008f5d338cd1f22f432e50e537417d&language=en-US&query=${inputValue}&page=${pageNumber}&include_adult=false`)
         .then(response => response.json())
         .then(data => {
+            findFilms = data.results;
+           console.log(findFilms);
             if (!data.results.length) {
                 const warning = document.createElement('p');
                 warning.classList.add('warning');
@@ -71,10 +73,10 @@ function plaginationNavigation(e) {
         if (pageNumber > 1) {
             btnPageNumber.innerText--;
             pageNumber--;
-            if (inputValue) {
-                fetchFilms();
 
-            } else fetchPopularMoviesList(pageNumber);
+            fetchFilms();
+
+
 
             if (pageNumber === 1) {
                 btnPrev.classList.remove('active');
@@ -89,10 +91,7 @@ function plaginationNavigation(e) {
         btnPageNumber.innerText++;
         pageNumber++;
 
-        if (inputValue) {
-            fetchFilms();
-        } else fetchPopularMoviesList(pageNumber);
-
+        fetchFilms();
 
     }
 }
