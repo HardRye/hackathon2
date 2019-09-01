@@ -30,38 +30,36 @@ function activeDetailsPageListener(e) {
   sectionCard.classList.remove('non-active-section');
   sectionMain.classList.add('non-active-section');
   sectionLibrary.classList.add('non-active-section');
-  console.log(e.target.dataset.id);
-  console.log(e.currentTarget.dataset.name);
+ 
   if (e.currentTarget.dataset.name === 'home') {
     activeDetailsPage(e.target.dataset.id, false);
-    console.log(e.target.dataset.id);
-  } else if (e.currentTarget.dataset.name === 'library') {
+  } else if (e.currentTarget.dataset.name === 'favourites') {
+    try {
+      const filmsFromLocalWatched = localStorage.getItem('filmsWatched');
+      return filmsFromLocalWatched === null ? undefined : JSON.parse(filmsFromLocalWatched);
+    } catch (err) {
+      console.error(err);
+    }
     activeDetailsPage(e.target.dataset.id, true);
-  }
-}
-
-function activeDetailsPage(movieId, itsLibraryFilm) {
-  console.log('renderFilms ', renderFilms);
-  if(itsLibraryFilm) {
+  } else if (e.currentTarget.dataset.name === 'favourites') {
     try {
       const filmsFromLocalQueue = localStorage.getItem('filmsQueue');
       return filmsFromLocalQueue === null ? undefined : JSON.parse(filmsFromLocalQueue);
     } catch (err) {
       console.error(err);
     }
-    selectFilm = filmsFromLocalQueue.find(item => item.id === movieId);
+    activeDetailsPage(e.target.dataset.id, true);
+  }
+}
+
+function activeDetailsPage(movieId, itsLibraryFilm) {
+  if(itsLibraryFilm) {
+    selectFilm = filmsFromLocalQueue.find(item => item.id === Number(movieId));
     if(!selectFilm) {
-      try {
-        const filmsFromLocalWatched = localStorage.getItem('filmsWatched');
-        return filmsFromLocalWatched === null ? undefined : JSON.parse(filmsFromLocalWatched);
-      } catch (err) {
-        console.error(err);
-      }
-      selectFilm = filmsFromLocalWatched.find(item => item.id === movieId);
+      selectFilm = filmsFromLocalWatched.find(item => item.id === Number(movieId));
     }
   } else {
-    console.log(renderFilms);
-    selectFilm = renderFilms.find(item => item.id === movieId);
+    selectFilm = renderFilms.find(item => item.id === Number(movieId));
   }
   showDetails(selectFilm);
 }
