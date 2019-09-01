@@ -17,26 +17,26 @@ const cardDetailsAbout = detailsCard.querySelector(
 );
 
 const addToFavBtn = actionBtnsForm.querySelector(
-  "button[data-action='add-to-favorite']",
+    "button[data-action='add-to-favorite']",
 );
 const delFromFavBtn = actionBtnsForm.querySelector(
-  "button[data-action='delete-from-favorite']",
+    "button[data-action='delete-from-favorite']",
 );
 const addToQueueBtn = actionBtnsForm.querySelector(
-  "button[data-action='add-to-queue']",
+    "button[data-action='add-to-queue']",
 );
 const delFromQueueBtn = actionBtnsForm.querySelector(
-  "button[data-action='delete-from-queue']",
+    "button[data-action='delete-from-queue']",
 );
 
 let filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
 let filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
 
 const toggleBtn = (btnToShow, btnToHide) => {
-  btnToShow.classList.remove('hide');
-  btnToShow.classList.add('show');
-  btnToHide.classList.remove('show');
-  btnToHide.classList.add('hide');
+    btnToShow.classList.remove('hide');
+    btnToShow.classList.add('show');
+    btnToHide.classList.remove('show');
+    btnToHide.classList.add('hide');
 };
 
 const monitorButtonStatusText = () => {
