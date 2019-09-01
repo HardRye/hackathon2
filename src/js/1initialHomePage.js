@@ -60,17 +60,10 @@ const fetchPopularMoviesList = (page = 1) => {
       const fragment = document.createDocumentFragment();
 
       renderFilms.forEach(el => {
-        if (el.backdrop_path !== null) {
-          fragment.append(
-            createCardFunc(el.backdrop_path, el.original_title, el.id))
-        } else if (el.poster_path !== null) {
-          fragment.append(
-            createCardFunc(el.poster_path, el.original_title, el.id))
-        } else {
-          fragment.append(
-            createCardFunc('../images/default_image.png', el.original_title, el.id))
-        }
-      })
+        fragment.append(
+          createCardFunc(el.backdrop_path, el.original_title, el.id))
+      }
+      )
 
       filmList.innerHTML = "";
       filmList.append(fragment);
