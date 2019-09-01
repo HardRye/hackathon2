@@ -60,8 +60,13 @@ const fetchPopularMoviesList = (page = 1) => {
       const fragment = document.createDocumentFragment();
 
       renderFilms.forEach(el => {
+        const imagePath = el.backdrop_path;
+        const title = el.original_title;
+        const year = el.release_date.substr(0, 4) ? `(${el.release_date.substr(0, 4)})` : "";
+        const filmId = el.id;
+
         fragment.append(
-          createCardFunc(el.backdrop_path, el.original_title, el.id))
+          createCardFunc(imagePath, `${title} ${year}`, filmId))
       }
       )
 
