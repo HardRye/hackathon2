@@ -12,7 +12,7 @@ const createLibraryCardFunc = function(
 ) {
   const card = document.createElement('li');
   card.classList.add('film');
-  card.classList.add('data-id', movieId);
+  card.setAttribute('data-id', movieId);
 
   const image = document.createElement('img');
   image.setAttribute('src', 'https://image.tmdb.org/t/p/' + 'w500' + imgPath);
