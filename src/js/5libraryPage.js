@@ -48,7 +48,6 @@ const drawWatchedFilmList = function() {
     films.innerHTML = '';
     films.append(fragment);
     return;
-
   }
 
   const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
@@ -137,6 +136,4 @@ const drawQueueFilmList = function() {
 favouriteButton.addEventListener('click', drawWatchedFilmList);
 queueButton.addEventListener('click', drawQueueFilmList);
 
-// films.addEventListener('click');
-
-// films.addEventListener('click', (id, b) => activeDetailsPage(id, true));
+document.querySelector('footer__link');
