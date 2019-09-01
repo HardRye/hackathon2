@@ -1,44 +1,52 @@
-const detailsCard = document.querySelector('.film-card');
+const detailsCard = document.querySelector('.card-details');
 const actionBtnsForm = document.querySelector('.card-details__actions');
+const posterImg = detailsCard.querySelector('.card-details__img');
+const cardDetailsTitle = detailsCard.querySelector('.card-details__title');
+const cardDetailsVotes = detailsCard.querySelector(
+  '.card-details__votes--value',
+);
+const cardDetailsPopularity = detailsCard.querySelector(
+  '.card-details__popularity--value',
+);
+const cardDetailsName = detailsCard.querySelector('.card-details__name--value');
+const cardDetailsGenre = detailsCard.querySelector(
+  '.card-details__genre--value',
+);
+const cardDetailsAbout = detailsCard.querySelector(
+  '.card-details__about--text',
+);
+
 const addToFavBtn = actionBtnsForm.querySelector(
-  "button[data-action='add-to-favorite']",
+    "button[data-action='add-to-favorite']",
 );
 const delFromFavBtn = actionBtnsForm.querySelector(
-  "button[data-action='delete-from-favorite']",
+    "button[data-action='delete-from-favorite']",
 );
 const addToQueueBtn = actionBtnsForm.querySelector(
-  "button[data-action='add-to-queue']",
+    "button[data-action='add-to-queue']",
 );
 const delFromQueueBtn = actionBtnsForm.querySelector(
-  "button[data-action='delete-from-queue']",
+    "button[data-action='delete-from-queue']",
 );
 
 let filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
 let filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
 
 const toggleBtn = (btnToShow, btnToHide) => {
-  btnToShow.classList.remove('hide');
-  btnToShow.classList.add('show');
-  btnToHide.classList.remove('show');
-  btnToHide.classList.add('hide');
+    btnToShow.classList.remove('hide');
+    btnToShow.classList.add('show');
+    btnToHide.classList.remove('show');
+    btnToHide.classList.add('hide');
 };
-
-//try
-const selectFilm1 = {
-  id: '123',
-};
-//try
-
-detailsCard.dataset.id = selectFilm1.id;
 
 const monitorButtonStatusText = () => {
-  if (filmsQueue && filmsQueue.find(film => film.id === selectFilm1.id)) {
+  if (filmsQueue && filmsQueue.find(film => film.id === selectFilm.id)) {
     toggleBtn(delFromQueueBtn, addToQueueBtn);
   } else {
     toggleBtn(addToQueueBtn, delFromQueueBtn);
   }
 
-  if (filmsWatched && filmsWatched.find(film => film.id === selectFilm1.id)) {
+  if (filmsWatched && filmsWatched.find(film => film.id === selectFilm.id)) {
     toggleBtn(delFromFavBtn, addToFavBtn);
   } else {
     toggleBtn(addToFavBtn, delFromFavBtn);
@@ -53,11 +61,10 @@ const toggleToQueue = ({ target }) => {
     return;
   if (!filmsQueue) filmsQueue = [];
 
-  if (filmsQueue.find(film => film.id === selectFilm1.id)) {
-    filmsQueue = filmsQueue.filter(film => film.id !== selectFilm1.id);
-    console.log(filmsQueue);
+  if (filmsQueue.find(film => film.id === selectFilm.id)) {
+    filmsQueue = filmsQueue.filter(film => film.id !== selectFilm.id);
   } else {
-    filmsQueue.push(selectFilm1);
+    filmsQueue.push(selectFilm);
   }
 
   if (filmsQueue.length) {
@@ -77,11 +84,10 @@ const toggleToWatched = ({ target }) => {
     return;
   if (!filmsWatched) filmsWatched = [];
 
-  if (filmsWatched.find(film => film.id === selectFilm1.id)) {
-    filmsWatched = filmsWatched.filter(film => film.id !== selectFilm1.id);
-    console.log(filmsWatched);
+  if (filmsWatched.find(film => film.id === selectFilm.id)) {
+    filmsWatched = filmsWatched.filter(film => film.id !== selectFilm.id);
   } else {
-    filmsWatched.push(selectFilm1);
+    filmsWatched.push(selectFilm);
   }
 
   if (filmsWatched.length) {
@@ -93,7 +99,26 @@ const toggleToWatched = ({ target }) => {
   monitorButtonStatusText();
 };
 
-monitorButtonStatusText();
+const showDetails = selectFilm => {
+  detailsCard.dataset.id = selectFilm.id;
+  posterImg.src = selectFilm.poster_path;
+  posterImg.alt = selectFilm.original_title;
+  cardDetailsTitle.textContent = selectFilm.original_title;
+  cardDetailsVotes.textContent = `${selectFilm.vote_average} / ${selectFilm.vote_count}`;
+  cardDetailsPopularity.textContent = selectFilm.popularity;
+  cardDetailsName.textContent = selectFilm.original_title;
+
+  cardDetailsGenre.textContent = selectFilm.genre_ids
+    .map(genreId => genreId)
+    .map(id => genres.find(genre => genre.id === id))
+    .reduce((acc, film) => {
+      acc + film.name;
+    }, '');
+
+  cardDetailsAbout.textContent = selectFilm.overview;
+
+  monitorButtonStatusText();
+};
 
 actionBtnsForm.addEventListener('click', toggleToQueue);
 actionBtnsForm.addEventListener('click', toggleToWatched);

@@ -4,10 +4,15 @@ const form = document.querySelector('.search-form');
 const btnPrev = document.querySelector('.page_prev');
 const btnNext = document.querySelector('.page_next');
 const btnPageNumber = document.querySelector('.number_page');
+const containerBtn = document.querySelector('.button_page');
 
+pageNumber = 1;
 
-// pageNumber = 1;
+btnPageNumber.innerText = pageNumber;
 
+if (pageNumber === 1) {
+    btnPrev.classList.add('disable')
+}
 
 
 function fetchFilms() {
@@ -44,14 +49,46 @@ function fetchFilms() {
 
 
 
-function searchFilms(e) {
-    e.preventDefault();
+// function searchFilms(e) {
+//     e.preventDefault();
 
-    inputValue = input.value;
+//     inputValue = input.value;
 
-    fetchFilms();
+//     fetchFilms();
 
-    e.target.reset();
+//     e.target.reset();
+// }
+
+
+
+
+function plaginationNavigation(e) {
+    if (e.target.classList.contains('page_prev')) {
+        if (pageNumber > 1) {
+            btnPageNumber.innerText--;
+            pageNumber--;
+
+            fetchFilms();
+
+
+
+            if (pageNumber === 1) {
+                btnPrev.classList.remove('active');
+                btnPrev.classList.add('disable');
+            }
+
+        }
+    }
+
+    if (e.target.classList.contains('page_next')) {
+        btnPrev.classList.add('active');
+        btnPageNumber.innerText++;
+        pageNumber++;
+
+        fetchFilms();
+
+    }
 }
 
-searchForm.addEventListener('submit', searchFilms);
+// searchForm.addEventListener('submit', searchFilms);
+containerBtn.addEventListener('click', plaginationNavigation);

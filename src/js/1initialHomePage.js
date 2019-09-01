@@ -62,8 +62,9 @@ const fetchPopularMoviesList = (page = 1) => {
       )
       filmList.innerHTML = "";
       filmList.append(fragment);
-      // filmList.addEventListener('click', activeDetailsPageListener)
+      filmList.addEventListener('click', activeDetailsPageListener)
     })
+
     .catch(error => {
       const fragment = document.createDocumentFragment();
 
