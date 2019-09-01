@@ -40,12 +40,12 @@ const drawWatchedFilmList = function() {
   // const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
   if (localStorage.getItem('filmsWatched') === null) {
     return console.log(
-      'You do not have watched movies. Add them.',
+      'You do not have favourite movies. Add them.',
     ); /******************** */
   }
   const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
   if (favouriteMovies.length === 0) {
-    return console.log('You do not have watched movies. Add them.');
+    return console.log('You do not have favourite movies. Add them.');
   }
   favouriteMovies.forEach(el =>
     fragment.append(
