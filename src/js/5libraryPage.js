@@ -39,13 +39,24 @@ const drawWatchedFilmList = function() {
   // console.log(localStorage.getItem('filmsWatched'));
   // const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
   if (localStorage.getItem('filmsWatched') === null) {
-    return console.log(
-      'You do not have watched movies. Add them.',
-    ); /******************** */
+    const fragment = document.createDocumentFragment();
+    const emptyStorage = document.createElement('p');
+    emptyStorage.classList.add('empty__storage');
+    emptyStorage.textContent = 'You do not have favourite movies. Add them.';
+    fragment.append(emptyStorage);
+
+    films.innerHTML = '';
+    films.append(fragment);
+
+    return;
+
+    // console.log(
+    //   'You do not have favourite movies. Add them.',
+    // ); /******************** */
   }
   const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
   if (favouriteMovies.length === 0) {
-    return console.log('You do not have watched movies. Add them.');
+    return console.log('You do not have favourite movies. Add them.');
   }
   favouriteMovies.forEach(el =>
     fragment.append(
@@ -57,7 +68,7 @@ const drawWatchedFilmList = function() {
       ),
     ),
   );
-  films.classList.add('data-name', 'favourites');
+  films.setAttribute('data-name', 'favourites');
   films.innerHTML = '';
   films.append(fragment);
   films.addEventListener('click', activeDetailsPageListener);
@@ -95,7 +106,7 @@ const drawQueueFilmList = function() {
       ),
     ),
   );
-  films.classList.add('data-name', 'queue');
+  films.setAttribute('data-name', 'queue');
   films.innerHTML = '';
   films.append(fragment);
   films.addEventListener('click', activeDetailsPageListener);

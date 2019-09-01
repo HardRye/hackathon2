@@ -34,6 +34,7 @@ li {
 .button__colored {
   background-color: #77c1bb;
   border: none;
+  color: #fff;
 }
 
 .myFilmLibraryPage__modes button:hover {
@@ -76,6 +77,10 @@ li {
   top: 6px;
   text-align: center;
   line-height: 16px;
+}
+
+.empty__storage {
+  font-size: 26px;
 }
 
 @media (min-width: 768px) {
