@@ -40,7 +40,6 @@ const drawWatchedFilmList = function() {
 
   if (localStorage.getItem('filmsWatched') === null) {
     const fragment = document.createDocumentFragment();
-
     const emptyStorage = document.createElement('h2');
     emptyStorage.classList.add('storage__empty');
     emptyStorage.textContent = 'You do not have favourite movies. Add them.';
@@ -49,6 +48,7 @@ const drawWatchedFilmList = function() {
     films.innerHTML = '';
     films.append(fragment);
     return;
+
   }
 
   const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
@@ -75,7 +75,7 @@ const drawWatchedFilmList = function() {
       ),
     ),
   );
-  films.classList.add('data-name', 'favourites');
+  films.setAttribute('data-name', 'favourites');
   films.innerHTML = '';
   films.append(fragment);
   films.addEventListener('click', activeDetailsPageListener);
@@ -128,7 +128,7 @@ const drawQueueFilmList = function() {
       ),
     ),
   );
-  films.classList.add('data-name', 'queue');
+  films.setAttribute('data-name', 'queue');
   films.innerHTML = '';
   films.append(fragment);
   films.addEventListener('click', activeDetailsPageListener);

@@ -48,7 +48,8 @@
 .card-details__name--title,
 .card-details__popularity--title,
 .card-details__genre--title {
-  width: 50%;
+  width: 136px;
+  text-align: center;
 }
 
 .card-details__votes,
@@ -108,6 +109,14 @@
     width: 338px;
   }
 
+  .card-details__votes--title,
+  .card-details__name--title,
+  .card-details__popularity--title,
+  .card-details__genre--title {
+    width: 168px;
+    text-align: center;
+  }
+
   .card-details__description,
   .card-details__about {
     margin-bottom: 30px;
@@ -136,6 +145,14 @@
 
   .card-details__wrapper {
     width: 430px;
+  }
+
+  .card-details__votes--title,
+  .card-details__name--title,
+  .card-details__popularity--title,
+  .card-details__genre--title {
+    width: 214px;
+    text-align: center;
   }
 
   .card-details__actions {
