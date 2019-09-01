@@ -57,7 +57,7 @@ const fetchPopularMoviesList = (page = 1) => {
     .then(data => {
       renderFilms = data.results;
       // pageNumber = data.page;
-
+      
       const fragment = document.createDocumentFragment();
 
       renderFilms.forEach(el =>
