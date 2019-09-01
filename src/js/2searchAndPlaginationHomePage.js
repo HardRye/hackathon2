@@ -44,14 +44,14 @@ function fetchFilms() {
 
 
 
-function searchFilms(e) {
-    e.preventDefault();
+// function searchFilms(e) {
+//     e.preventDefault();
 
-    inputValue = input.value;
+//     inputValue = input.value;
 
-    fetchFilms();
+//     fetchFilms();
 
-    e.target.reset();
-}
+//     e.target.reset();
+// }
 
-searchForm.addEventListener('submit', searchFilms);
+// searchForm.addEventListener('submit', searchFilms);

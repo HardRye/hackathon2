@@ -39,7 +39,7 @@ const createCardFunc = (imgPath, filmTitle, movieId) => {
   filmListTitle.textContent = filmTitle;
   filmListItem.append(filmListTitle);
 
-  filmListItem.addEventListener('click', activeDetailsPage);
+  // filmListItem.addEventListener('click', activeDetailsPage);
 
   return filmListItem;
 }
@@ -65,7 +65,7 @@ const fetchPopularMoviesList = (page = 1) => {
       )
       filmList.innerHTML = "";
       filmList.append(fragment);
-      filmList.addEventListener('click', activeDetailsPage)
+      filmList.addEventListener('click', activeDetailsPageListener);
     }
     )
     .catch(console.log)
