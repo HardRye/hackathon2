@@ -81,7 +81,7 @@ const toggleToQueue = ({ target }) => {
 
   if (filmsQueue.find(film => film.id === selectFilm.id)) {
     filmsQueue = filmsQueue.filter(film => film.id !== selectFilm.id);
-    console.log(filmsQueue);
+    // console.log(filmsQueue);
   } else {
     filmsQueue.push(selectFilm);
   }
@@ -109,7 +109,7 @@ const toggleToWatched = ({ target }) => {
 
   if (filmsWatched.find(film => film.id === selectFilm.id)) {
     filmsWatched = filmsWatched.filter(film => film.id !== selectFilm.id);
-    console.log(filmsWatched);
+    // console.log(filmsWatched);
   } else {
     filmsWatched.push(selectFilm);
   }
