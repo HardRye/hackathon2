@@ -153,7 +153,7 @@ actionBtnsForm.addEventListener('click', toggleToWatched);
 
 function scrollToTop() {
   window.scrollTo({
-    top: 1000,
+    top: 0,
     behavior: 'smooth',
   });
 }
