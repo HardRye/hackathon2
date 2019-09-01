@@ -147,6 +147,7 @@ const showDetails = selectFilm => {
   monitorButtonStatusText();
 };
 
+
 actionBtnsForm.addEventListener('click', toggleToQueue);
 actionBtnsForm.addEventListener('click', toggleToWatched);
 
