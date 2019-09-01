@@ -33,7 +33,6 @@ const createLibraryCardFunc = function(
 const drawWatchedFilmList = function() {
   const fragment = document.createDocumentFragment();
   const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
-  console.log(favouriteMovies);
   if (favouriteMovies === null || favouriteMovies.length === 0) {
     return alert('You do not have watched movies. Add them.');
   }
@@ -54,7 +53,6 @@ const drawWatchedFilmList = function() {
 const drawQueueFilmList = function() {
   const fragment = document.createDocumentFragment();
   const queueMovies = JSON.parse(localStorage.getItem('filmsQueue'));
-  console.log(queueMovies);
   if (queueMovies === null || queueMovies.length === 0) {
     return alert('You do not have to queue movies to watch. Add them.');
   }
