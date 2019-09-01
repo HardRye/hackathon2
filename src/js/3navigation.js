@@ -26,16 +26,22 @@ const activeLibraryPage = () => {
   sectionLibrary.classList.remove('non-active-section');
 }
 
-const activeDetailsPage = (evt, movieId, itsLibraryFilm) => {
+const activeDetailsPage = (movieId, itsLibraryFilm) => {
   sectionCard.classList.remove('non-active-section');
   sectionMain.classList.add('non-active-section');
   sectionLibrary.classList.add('non-active-section');
 
-  movieId = evt.currentTarget.dataset.id;
-  console.log(movieId);
-  console.log(renderFilms);
-  const selectFilm = renderFilms.find(item => item.id === movieId);
-  console.log(selectFilm);
+  if(itsLibraryFilm) {
+    const filmsFromLocalQueue = localStorage.getItem('filmsQueue');
+    const selectFilm = filmsFromLocalQueue.find(item => item.id === movieId);
+    if(!selectFilm) {
+      const filmsFromLocalQueueWatched = localStorage.getItem('filmsWatched');
+      const selectFilm = filmsFromLocalQueueWatched.find(item => item.id === movieId);
+    }
+  } else {
+    const selectFilm = renderFilms.find(item => item.id === movieId);
+  }
+  showDetails(selectFilm);
 }
 
 const chooseActiveLink = evt => {
