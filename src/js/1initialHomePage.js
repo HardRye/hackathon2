@@ -37,7 +37,9 @@ const createCardFunc = (imgPath, filmTitle, movieId) => {
   const filmListPoster = document.createElement('img');
   filmListPoster.classList.add('filmList__poster');
   filmListPoster.setAttribute('alt', filmTitle);
-  filmListPoster.setAttribute('src', 'https://image.tmdb.org/t/p/' + 'w500' + imgPath);
+  filmListPoster.setAttribute('src',
+    'https://image.tmdb.org/t/p/' + 'w500' + imgPath);
+
   filmListItem.append(filmListPoster);
 
   const filmListTitle = document.createElement('p');
@@ -57,9 +59,12 @@ const fetchPopularMoviesList = (page = 1) => {
       renderFilms = data.results;
       const fragment = document.createDocumentFragment();
 
-      renderFilms.forEach(el =>
-        fragment.append(createCardFunc(el.backdrop_path, el.original_title, el.id))
+      renderFilms.forEach(el => {
+        fragment.append(
+          createCardFunc(el.backdrop_path, el.original_title, el.id))
+      }
       )
+
       filmList.innerHTML = "";
       filmList.append(fragment);
       filmList.addEventListener('click', activeDetailsPageListener)

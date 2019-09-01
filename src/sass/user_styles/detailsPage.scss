@@ -13,11 +13,15 @@
   height: 402px;
   width: 274px;
   margin-bottom: 18px;
+  background-image: url("../images/default_poster.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .card-details__title,
 .card-details__about--title {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 16.6px;
@@ -27,7 +31,7 @@
 }
 
 .card-details__description {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 13.3px;
@@ -58,7 +62,7 @@
 
 .card-details__about--text,
 .card-details__action-text {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
