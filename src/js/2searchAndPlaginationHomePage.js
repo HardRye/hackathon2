@@ -4,10 +4,15 @@ const form = document.querySelector('.search-form');
 const btnPrev = document.querySelector('.page_prev');
 const btnNext = document.querySelector('.page_next');
 const btnPageNumber = document.querySelector('.number_page');
+const containerBtn = document.querySelector('.button_page');
 
+pageNumber = 1;
 
-// pageNumber = 1;
+btnPageNumber.innerText = pageNumber;
 
+if (pageNumber === 1) {
+    btnPrev.classList.add('disable')
+}
 
 
 function fetchFilms() {
@@ -29,7 +34,7 @@ function fetchFilms() {
 
 
                 data.results.map(el => {
-                    const moviePath = `https://image.tmdb.org/t/p/w400/${el.backdrop_path}`;
+                    const moviePath = `${el.backdrop_path}`;
                     const movieTitle = `${el.title} (${el.release_date.slice(0, 4)})`;
                     const movieId = el.id;
 
@@ -44,14 +49,50 @@ function fetchFilms() {
 
 
 
-// function searchFilms(e) {
-//     e.preventDefault();
+function searchFilms(e) {
+    e.preventDefault();
 
-//     inputValue = input.value;
+    inputValue = input.value;
+    pageNumber = 1;
+    btnPageNumber.innerText = pageNumber;
+    btnPrev.classList.remove('active');
+    btnPrev.classList.add('disable');
 
-//     fetchFilms();
+    fetchFilms();
 
-//     e.target.reset();
-// }
+    e.target.reset();
+}
 
-// searchForm.addEventListener('submit', searchFilms);
+
+
+
+function plaginationNavigation(e) {
+    if (e.target.classList.contains('page_prev')) {
+        if (pageNumber > 1) {
+            btnPageNumber.innerText--;
+            pageNumber--;
+
+            fetchFilms();
+
+
+
+            if (pageNumber === 1) {
+                btnPrev.classList.remove('active');
+                btnPrev.classList.add('disable');
+            }
+
+        }
+    }
+
+    if (e.target.classList.contains('page_next')) {
+        btnPrev.classList.add('active');
+        btnPageNumber.innerText++;
+        pageNumber++;
+
+        fetchFilms();
+
+    }
+}
+
+form.addEventListener('submit', searchFilms);
+containerBtn.addEventListener('click', plaginationNavigation);

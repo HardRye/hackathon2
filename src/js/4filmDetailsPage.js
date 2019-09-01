@@ -15,8 +15,7 @@ const cardDetailsGenre = detailsCard.querySelector(
 const cardDetailsAbout = detailsCard.querySelector(
   '.card-details__about--text',
 );
-
-const addToFavBtn = detailsCard.querySelector(
+const addToFavBtn = actionBtnsForm.querySelector(
   "button[data-action='add-to-favorite']",
 );
 const delFromFavBtn = actionBtnsForm.querySelector(
