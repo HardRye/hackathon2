@@ -36,11 +36,16 @@ const drawWatchedFilmList = function() {
   queueButton.classList.remove('button__colored');
   queueButton.classList.add('button__white');
   const fragment = document.createDocumentFragment();
-  const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
-  if (favouriteMovies === null || favouriteMovies.length === 0) {
+  // console.log(localStorage.getItem('filmsWatched'));
+  // const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
+  if (localStorage.getItem('filmsWatched') === null) {
     return console.log(
       'You do not have watched movies. Add them.',
     ); /******************** */
+  }
+  const favouriteMovies = JSON.parse(localStorage.getItem('filmsWatched'));
+  if (favouriteMovies.length === 0) {
+    return console.log('You do not have watched movies. Add them.');
   }
   favouriteMovies.forEach(el =>
     fragment.append(
@@ -52,6 +57,7 @@ const drawWatchedFilmList = function() {
       ),
     ),
   );
+  films.classList.add('data-name', 'favourites');
   films.innerHTML = '';
   films.append(fragment);
 };
@@ -62,12 +68,22 @@ const drawQueueFilmList = function() {
   favouriteButton.classList.remove('button__colored');
   favouriteButton.classList.add('button__white');
   const fragment = document.createDocumentFragment();
-  const queueMovies = JSON.parse(localStorage.getItem('filmsQueue'));
-  if (queueMovies === null || queueMovies.length === 0) {
+
+  if (localStorage.getItem('filmsQueue') === null) {
     return console.log(
       'You do not have to queue movies to watch. Add them.',
-    ); /************************ */
+    ); /******************** */
   }
+  const queueMovies = JSON.parse(localStorage.getItem('filmsQueue'));
+  if (queueMovies.length === 0) {
+    return console.log('You do not have to queue movies to watch. Add them.');
+  } /************************ */
+  // const queueMovies = JSON.parse(localStorage.getItem('filmsQueue'));
+  // if (queueMovies === null || queueMovies.length === 0) {
+  //   return console.log(
+  //     'You do not have to queue movies to watch. Add them.',
+  //   );
+  // }
   queueMovies.forEach(el =>
     fragment.append(
       createLibraryCardFunc(
@@ -78,6 +94,7 @@ const drawQueueFilmList = function() {
       ),
     ),
   );
+  films.classList.add('data-name', 'queue');
   films.innerHTML = '';
   films.append(fragment);
 };
