@@ -34,7 +34,7 @@ function fetchFilms() {
 
 
                 data.results.map(el => {
-                    const moviePath = `https://image.tmdb.org/t/p/w400/${el.backdrop_path}`;
+                    const moviePath = `${el.backdrop_path}`;
                     const movieTitle = `${el.title} (${el.release_date.slice(0, 4)})`;
                     const movieId = el.id;
 
@@ -49,15 +49,19 @@ function fetchFilms() {
 
 
 
-// function searchFilms(e) {
-//     e.preventDefault();
+function searchFilms(e) {
+    e.preventDefault();
 
-//     inputValue = input.value;
+    inputValue = input.value;
+    pageNumber = 1;
+    btnPageNumber.innerText = pageNumber;
+    btnPrev.classList.remove('active');
+    btnPrev.classList.add('disable');
 
-//     fetchFilms();
+    fetchFilms();
 
-//     e.target.reset();
-// }
+    e.target.reset();
+}
 
 
 
@@ -90,5 +94,5 @@ function plaginationNavigation(e) {
     }
 }
 
-// searchForm.addEventListener('submit', searchFilms);
+form.addEventListener('submit', searchFilms);
 containerBtn.addEventListener('click', plaginationNavigation);
