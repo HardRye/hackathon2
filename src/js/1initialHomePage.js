@@ -65,7 +65,7 @@ const fetchPopularMoviesList = (page = 1) => {
       )
       filmList.innerHTML = "";
       filmList.append(fragment);
-
+      filmList.addEventListener('click', activeDetailsPage)
     }
     )
     .catch(console.log)
@@ -86,5 +86,5 @@ const fetchGenres = () => {
 
 
 // - запускаем функцию fetchPopularMoviesList и fetchGenres. 
-fetchPopularMoviesList();
+fetchPopularMoviesList(); // функция должна(?) принимать значение pageNum 
 fetchGenres();
