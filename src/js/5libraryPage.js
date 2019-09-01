@@ -136,4 +136,76 @@ const drawQueueFilmList = function() {
 favouriteButton.addEventListener('click', drawWatchedFilmList);
 queueButton.addEventListener('click', drawQueueFilmList);
 
-document.querySelector('footer__link');
+/******************************************************** */
+
+const footLink = document.querySelector('.footer__link');
+const ul = document.querySelector('.filmList');
+const homePage = document.querySelector('.home-page');
+const buttons = document.querySelector('.button_page');
+const search = document.querySelector('.search');
+
+function footLinkHandle() {
+  ul.classList.add('new__class');
+  const contacts = document.createElement('li');
+  contacts.classList.add('contacts');
+
+  const person1 = document.createElement('div');
+  const a1 = document.createElement('a');
+  a1.setAttribute('href', 'https://github.com/HardRye');
+  a1.textContent = 'https://github.com/HardRye';
+  person1.classList.add('contacts__info');
+  person1.textContent = 'Nikolay Mykhailenko';
+  // contacts.appendChild(a1);
+  // console.log(a1);
+
+  const person2 = document.createElement('div');
+  const a2 = document.createElement('a');
+  a2.setAttribute('href', 'https://github.com/annakholod');
+  a2.textContent = 'https://github.com/annakholod';
+  person2.classList.add('contacts__info');
+  person2.textContent = 'Anna Kholod';
+
+  const person3 = document.createElement('div');
+  const a3 = document.createElement('a');
+  a3.setAttribute('href', 'https://github.com/kostyash23');
+  a3.textContent = 'https://github.com/kostyash23';
+  person3.classList.add('contacts__info');
+  person3.textContent = 'Kostya Shmotoloha';
+
+  const person4 = document.createElement('div');
+  const a4 = document.createElement('a');
+  a4.setAttribute('href', 'https://github.com/AlexxxxK');
+  a4.textContent = 'https://github.com/AlexxxxK';
+  person4.classList.add('contacts__info');
+  person4.textContent = 'Alexandr Kozyr';
+
+  const person5 = document.createElement('div');
+  const a5 = document.createElement('a');
+  a5.setAttribute('href', 'https://github.com/maximusII');
+  a5.textContent = 'https://github.com/maximusII';
+  person5.classList.add('contacts__info');
+  person5.textContent = 'Maksym Osadchuk';
+
+  const person6 = document.createElement('div');
+  person6.classList.add('contacts__info--last');
+
+  contacts.appendChild(person1);
+  contacts.appendChild(a1);
+  contacts.appendChild(person2);
+  contacts.appendChild(a2);
+  contacts.appendChild(person3);
+  contacts.appendChild(a3);
+  contacts.appendChild(person4);
+  contacts.appendChild(a4);
+  contacts.appendChild(person5);
+  contacts.appendChild(a5);
+  contacts.appendChild(person6);
+
+  homePage.removeChild(buttons);
+  homePage.removeChild(search);
+
+  ul.innerHTML = '';
+  ul.appendChild(contacts);
+}
+
+footLink.addEventListener('click', footLinkHandle);
