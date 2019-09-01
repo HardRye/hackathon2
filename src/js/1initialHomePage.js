@@ -5,7 +5,20 @@ const URL_POPULAR = 'https://api.themoviedb.org/3/movie/popular?api_key=96750927
 const URL_GENRES = 'https://api.themoviedb.org/3/genre/movie/list?api_key=9675092798f3a490a8c4d8f2cf77169b&language=en-US'
 
 // - выбираем из DOM наш список;
-const filmList = document.querySelector('.filmList')
+const filmList = document.querySelector('.filmList');
+filmList.setAttribute('data-name', 'home');
+
+// function activeDetailsPageListener(e) {
+//   // console.dir(e.target);
+//   // console.log(e.currentTarget);
+//   console.log(e.target.dataset.id);
+//   console.log(e.currentTarget.dataset.name)
+//   if (e.currentTarget.dataset.name === 'home') {
+//     activeDetailsPage(e.target.dataset.id, false)
+//   } else if (e.currentTarget.dataset.name === 'library') {
+//     activeDetailsPage(e.target.dataset.id, true)
+//   }
+// }
 
 // - создаем глобальные переменные renderFilms и genres, pageNumber 
 // (будет использоваться в запросе при плагинации); 
@@ -15,13 +28,7 @@ let pageNumber;
 
 
 const createCardFunc = (imgPath, filmTitle, movieId) => {
-  // - создаем функцию createCardFunc, она принимает параметрами 
-  // imgPath, filmTitle, movieId создает li согласно макета, 
-
-  // вешает на нее слушателем функцию activeDetailsPage c параметрами 
-  // movieId и флагом false так как фильм из библиотеки (смотри 
-  // пункт “3)” создание activeDetailsPage);
-
+  // - создаем функцию createCardFunc, она принимает параметрами imgPath, filmTitle, movieId создает li согласно макета, вешает на нее слушателем функцию activeDetailsPage c параметрами movieId и флагом false так как фильм из библиотеки (смотри пункт “3)” создание activeDetailsPage);
 
   const filmListItem = document.createElement('li');
   filmListItem.classList.add('filmList__item')
@@ -30,8 +37,7 @@ const createCardFunc = (imgPath, filmTitle, movieId) => {
   const filmListPoster = document.createElement('img');
   filmListPoster.classList.add('filmList__poster');
   filmListPoster.setAttribute('alt', filmTitle);
-  filmListPoster.setAttribute('src',
-    'https://image.tmdb.org/t/p/' + 'w500' + imgPath);
+  filmListPoster.setAttribute('src', 'https://image.tmdb.org/t/p/' + 'w500' + imgPath);
   filmListItem.append(filmListPoster);
 
   const filmListTitle = document.createElement('p');
@@ -39,25 +45,21 @@ const createCardFunc = (imgPath, filmTitle, movieId) => {
   filmListTitle.textContent = filmTitle;
   filmListItem.append(filmListTitle);
 
-  // filmListItem.addEventListener('click', activeDetailsPage);
-
   return filmListItem;
 }
 
 const fetchPopularMoviesList = (page = 1) => {
-  // - создаем функцию fetchPopularMoviesList (должна в запросе 
-  // в виде переменной использовать pageNumber) в которой 
-  // используется createCardFunc результат используя fragment 
-  // кладем в ul, и не забываем заполнить этими же данными 
-  // переменную renderFilms (она понадобится в работе следующим 
-  // участникам); 
+  // - создаем функцию fetchPopularMoviesList (должна в запросе в виде переменной использовать pageNumber) в которой используется createCardFunc результат используя fragment кладем в ul, и не забываем заполнить этими же данными переменную renderFilms (она понадобится в работе следующим участникам); 
 
   fetch(`${URL_POPULAR + page}`)
     .then(responce => responce.json())
     .then(data => {
       renderFilms = data.results;
+<<<<<<< HEAD
       // pageNumber = data.page;
       
+=======
+>>>>>>> dev
       const fragment = document.createDocumentFragment();
 
       renderFilms.forEach(el =>
@@ -65,10 +67,30 @@ const fetchPopularMoviesList = (page = 1) => {
       )
       filmList.innerHTML = "";
       filmList.append(fragment);
-      filmList.addEventListener('click', activeDetailsPageListener);
-    }
-    )
-    .catch(console.log)
+      filmList.addEventListener('click', activeDetailsPageListener)
+    })
+
+    .catch(error => {
+      const fragment = document.createDocumentFragment();
+
+      const filmListErrorTitle = document.createElement('h2');
+      filmListErrorTitle.classList.add('filmList__error');
+      filmListErrorTitle.textContent = "Oops, something went wrong";
+      fragment.append(filmListErrorTitle);
+
+      const filmListErrorText = document.createElement('h3');
+      filmListErrorText.classList.add('filmList__error');
+      filmListErrorText.textContent = "Please, try again later";
+      fragment.append(filmListErrorText);
+
+      const filmListErrorReason = document.createElement('p');
+      filmListErrorReason.classList.add('filmList__error');
+      filmListErrorReason.textContent = error;
+      fragment.append(filmListErrorReason);
+
+      filmList.innerHTML = "";
+      filmList.append(fragment);
+    })
 }
 
 const fetchGenres = () => {
