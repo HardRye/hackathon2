@@ -147,10 +147,16 @@ const showDetails = selectFilm => {
   monitorButtonStatusText();
 };
 
-
 actionBtnsForm.addEventListener('click', toggleToQueue);
 actionBtnsForm.addEventListener('click', toggleToWatched);
 
+window.onscroll = function() {
+  if (document.documentElement.scrollTop > 40) {
+    btnFix.style.display = 'block';
+  } else {
+    btnFix.style.display = 'none';
+  }
+};
 function scrollToTop() {
   window.scrollTo({
     top: 0,
