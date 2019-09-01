@@ -134,20 +134,18 @@ const showDetails = selectFilm => {
   cardDetailsVotes.textContent = `${selectFilm.vote_average} / ${selectFilm.vote_count}`;
   cardDetailsPopularity.textContent = selectFilm.popularity;
   cardDetailsName.textContent = selectFilm.original_title;
-
-  cardDetailsGenre.textContent = selectFilm.genre_ids
-    .map(genreId => genreId)
-    .map(id => genres.find(genre => genre.id === id))
-    .reduce((acc, film) => {
-      acc + film.name;
-    }, '');
-
+  let genreIds = selectFilm.genre_ids.map(genreId => genreId);
+  let filmGenres = genres
+    .filter(e => {
+      return genreIds.includes(e.id);
+    })
+    .map(e => e.name);
+  cardDetailsGenre.textContent = filmGenres.join(', ');
   cardDetailsAbout.textContent = selectFilm.overview;
 
   monitorButtonStatusText();
 };
 
-// monitorButtonStatusText();
 
 actionBtnsForm.addEventListener('click', toggleToQueue);
 actionBtnsForm.addEventListener('click', toggleToWatched);

@@ -5,10 +5,16 @@ const sectionCard = document.querySelector('.film-card');
 const sectionLibrary = document.querySelector('main > .myFilmLibraryPage__container');
 const btnFavourites = document.querySelector('.myFilmLibraryPage__buttonFavourites');
 const btnQueue = document.querySelector('.myFilmLibraryPage__buttonQueue');
-const btnAddToFavourite = document.querySelector('.card-details__AddToFavourite');
-const btnRemoveFromFavourite = document.querySelector('.card-details__RemoveFromFavourite');
+const btnAddToFavourite = document.querySelector(
+  '.card-details__AddToFavourite',
+);
+const btnRemoveFromFavourite = document.querySelector(
+  '.card-details__RemoveFromFavourite',
+);
 const btnAddToQueue = document.querySelector('.card-details__AddToQueue');
-const btnRemoveFromQueue = document.querySelector('.card-details__RemoveFromQueue');
+const btnRemoveFromQueue = document.querySelector(
+  '.card-details__RemoveFromQueue',
+);
 const headerNav = document.querySelector('.header__nav');
 const headerLogo = document.querySelector('.header__logo');
 
@@ -67,6 +73,7 @@ function activeDetailsPageListener(e) {
 
   if (e.currentTarget.dataset.name === 'home') {
     activeDetailsPage(e.target.dataset.id, false);
+
   } else 
   if (e.currentTarget.dataset.name === 'favourites' || e.currentTarget.dataset.name === 'queue') {
     
@@ -112,12 +119,12 @@ function activeDetailsPage(movieId, itsLibraryFilm) {
 
 function chooseActiveLink(evt) {
   evt.preventDefault();
-  if(evt.target.classList.contains('header__link')) {
+  if (evt.target.classList.contains('header__link')) {
     const currentActiveItem = headerNav.querySelector('.header__link--active');
-        if(currentActiveItem) {
-          currentActiveItem.classList.remove('header__link--active');
-        }
-        evt.target.classList.add('header__link--active');
+    if (currentActiveItem) {
+      currentActiveItem.classList.remove('header__link--active');
+    }
+    evt.target.classList.add('header__link--active');
   }
 }
 

@@ -71,10 +71,10 @@ function plaginationNavigation(e) {
         if (pageNumber > 1) {
             btnPageNumber.innerText--;
             pageNumber--;
+            if (inputValue) {
+                fetchFilms();
 
-            fetchFilms();
-
-
+            } else fetchPopularMoviesList(pageNumber);
 
             if (pageNumber === 1) {
                 btnPrev.classList.remove('active');
@@ -89,7 +89,10 @@ function plaginationNavigation(e) {
         btnPageNumber.innerText++;
         pageNumber++;
 
-        fetchFilms();
+        if (inputValue) {
+            fetchFilms();
+        } else fetchPopularMoviesList(pageNumber);
+
 
     }
 }
