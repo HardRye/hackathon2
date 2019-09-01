@@ -20,7 +20,7 @@ function fetchFilms() {
         .then(response => response.json())
         .then(data => {
             findFilms = data.results;
-           console.log(findFilms);
+        //    console.log(findFilms);
             if (!data.results.length) {
                 const warning = document.createElement('p');
                 warning.classList.add('warning');

@@ -2,12 +2,8 @@ const btnHome = document.querySelector('.header__link--home');
 const btnLibrary = document.querySelector('.header__link--library');
 const sectionMain = document.querySelector('.home-page');
 const sectionCard = document.querySelector('.film-card');
-const sectionLibrary = document.querySelector(
-  'main > .myFilmLibraryPage__container',
-);
-const btnFavourites = document.querySelector(
-  '.myFilmLibraryPage__buttonFavourites',
-);
+const sectionLibrary = document.querySelector('main > .myFilmLibraryPage__container');
+const btnFavourites = document.querySelector('.myFilmLibraryPage__buttonFavourites');
 const btnQueue = document.querySelector('.myFilmLibraryPage__buttonQueue');
 const btnAddToFavourite = document.querySelector('.card-details__AddToFavourite');
 const btnRemoveFromFavourite = document.querySelector('.card-details__RemoveFromFavourite');
@@ -52,11 +48,8 @@ function activeDetailsPageListener(e) {
 
   if (e.currentTarget.dataset.name === 'home') {
     activeDetailsPage(e.target.dataset.id, false);
-  } else if (
-    e.currentTarget.dataset.name === 'favourites' ||
-    e.currentTarget.dataset.name === 'queue'
-  ) {
-    activeDetailsPage(e.target.parentNode.dataset.id, true);
+  } else if (e.currentTarget.dataset.name === 'favourites' || e.currentTarget.dataset.name === 'queue') {
+    activeDetailsPage(e.target.dataset.id, true);
   }
 }
 
@@ -69,9 +62,7 @@ function activeDetailsPage(movieId, itsLibraryFilm) {
       const filmsFromLocalWatched = localStorage.getItem('filmsWatched');
       if (filmsFromLocalWatched) {
         filmsFromLocalWatchedArr = JSON.parse(filmsFromLocalWatched);
-        selectFilm = filmsFromLocalWatchedArr.find(
-          item => item.id === Number(movieId),
-        );
+        selectFilm = filmsFromLocalWatchedArr.find(item => item.id === Number(movieId));
       }
     } catch (err) {
       console.error(err);
@@ -82,18 +73,18 @@ function activeDetailsPage(movieId, itsLibraryFilm) {
         const filmsFromLocalQueue = localStorage.getItem('filmsQueue');
         if (filmsFromLocalQueue) {
           filmsFromLocalQueueArr = JSON.parse(filmsFromLocalQueue);
-          selectFilm = filmsFromLocalQueueArr.find(
-            item => item.id === Number(movieId),
-          );
+          selectFilm = filmsFromLocalQueueArr.find(item => item.id === Number(movieId));
         }
       } catch (err) {
         console.error(err);
       }
     }
 
-    console.log(selectFilm);
   } else {
     selectFilm = renderFilms.find(item => item.id === Number(movieId));
+    if(!selectFilm) {
+      selectFilm = findFilms.find(item => item.id === Number(movieId));
+    }
   }
   showDetails(selectFilm);
 }
