@@ -60,6 +60,7 @@ const drawWatchedFilmList = function() {
   films.classList.add('data-name', 'favourites');
   films.innerHTML = '';
   films.append(fragment);
+  films.addEventListener('click', activeDetailsPageListener);
 };
 
 const drawQueueFilmList = function() {
@@ -97,6 +98,7 @@ const drawQueueFilmList = function() {
   films.classList.add('data-name', 'queue');
   films.innerHTML = '';
   films.append(fragment);
+  films.addEventListener('click', activeDetailsPageListener);
 };
 
 favouriteButton.addEventListener('click', drawWatchedFilmList);
