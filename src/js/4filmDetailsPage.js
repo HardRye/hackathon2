@@ -86,10 +86,14 @@ const toggleToQueue = ({ target }) => {
     filmsQueue.push(selectFilm);
   }
 
-  if (filmsQueue.length) {
-    localStorage.setItem('filmsQueue', JSON.stringify(filmsQueue));
-  } else {
-    localStorage.removeItem('filmsQueue');
+  try {
+    if (filmsQueue.length) {
+      localStorage.setItem('filmsQueue', JSON.stringify(filmsQueue));
+    } else {
+      localStorage.removeItem('filmsQueue');
+    }
+  } catch (error) {
+    throw error;
   }
 
   monitorButtonStatusText();
@@ -110,10 +114,14 @@ const toggleToWatched = ({ target }) => {
     filmsWatched.push(selectFilm);
   }
 
-  if (filmsWatched.length) {
-    localStorage.setItem('filmsWatched', JSON.stringify(filmsWatched));
-  } else {
-    localStorage.removeItem('filmsWatched');
+  try {
+    if (filmsWatched.length) {
+      localStorage.setItem('filmsWatched', JSON.stringify(filmsWatched));
+    } else {
+      localStorage.removeItem('filmsWatched');
+    }
+  } catch (error) {
+    throw error;
   }
 
   monitorButtonStatusText();
