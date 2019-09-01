@@ -26,10 +26,16 @@ const activeLibraryPage = () => {
   sectionLibrary.classList.remove('non-active-section');
 }
 
-const activeDetailsPage = (movieId, itsLibraryFilm) => {
+const activeDetailsPage = (evt, movieId, itsLibraryFilm) => {
   sectionCard.classList.remove('non-active-section');
   sectionMain.classList.add('non-active-section');
   sectionLibrary.classList.add('non-active-section');
+
+  movieId = evt.currentTarget.dataset.id;
+  console.log(movieId);
+  console.log(renderFilms);
+  const selectFilm = renderFilms.find(item => item.id === movieId);
+  console.log(selectFilm);
 }
 
 const chooseActiveLink = evt => {
