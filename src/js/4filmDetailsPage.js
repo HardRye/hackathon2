@@ -15,28 +15,45 @@ const cardDetailsGenre = detailsCard.querySelector(
 const cardDetailsAbout = detailsCard.querySelector(
   '.card-details__about--text',
 );
-
 const addToFavBtn = actionBtnsForm.querySelector(
-    "button[data-action='add-to-favorite']",
+  "button[data-action='add-to-favorite']",
 );
 const delFromFavBtn = actionBtnsForm.querySelector(
-    "button[data-action='delete-from-favorite']",
+  "button[data-action='delete-from-favorite']",
 );
 const addToQueueBtn = actionBtnsForm.querySelector(
-    "button[data-action='add-to-queue']",
+  "button[data-action='add-to-queue']",
 );
 const delFromQueueBtn = actionBtnsForm.querySelector(
-    "button[data-action='delete-from-queue']",
+  "button[data-action='delete-from-queue']",
 );
+let filmsQueue, filmsWatched;
 
-let filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
-let filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
+try {
+  if (localStorage.getItem('filmsQueue')) {
+    filmsQueue = JSON.parse(localStorage.getItem('filmsQueue'));
+  } else {
+    filmsQueue = [];
+  }
+} catch (error) {
+  throw error;
+}
+
+try {
+  if (localStorage.getItem('filmsWatched')) {
+    filmsWatched = JSON.parse(localStorage.getItem('filmsWatched'));
+  } else {
+    filmsWatched = [];
+  }
+} catch (error) {
+  throw error;
+}
 
 const toggleBtn = (btnToShow, btnToHide) => {
-    btnToShow.classList.remove('hide');
-    btnToShow.classList.add('show');
-    btnToHide.classList.remove('show');
-    btnToHide.classList.add('hide');
+  btnToShow.classList.remove('hide');
+  btnToShow.classList.add('show');
+  btnToHide.classList.remove('show');
+  btnToHide.classList.add('hide');
 };
 
 const monitorButtonStatusText = () => {
@@ -63,14 +80,19 @@ const toggleToQueue = ({ target }) => {
 
   if (filmsQueue.find(film => film.id === selectFilm.id)) {
     filmsQueue = filmsQueue.filter(film => film.id !== selectFilm.id);
+    console.log(filmsQueue);
   } else {
     filmsQueue.push(selectFilm);
   }
 
-  if (filmsQueue.length) {
-    localStorage.setItem('filmsQueue', JSON.stringify(filmsQueue));
-  } else {
-    localStorage.removeItem('filmsQueue');
+  try {
+    if (filmsQueue.length) {
+      localStorage.setItem('filmsQueue', JSON.stringify(filmsQueue));
+    } else {
+      localStorage.removeItem('filmsQueue');
+    }
+  } catch (error) {
+    throw error;
   }
 
   monitorButtonStatusText();
@@ -86,14 +108,19 @@ const toggleToWatched = ({ target }) => {
 
   if (filmsWatched.find(film => film.id === selectFilm.id)) {
     filmsWatched = filmsWatched.filter(film => film.id !== selectFilm.id);
+    console.log(filmsWatched);
   } else {
     filmsWatched.push(selectFilm);
   }
 
-  if (filmsWatched.length) {
-    localStorage.setItem('filmsWatched', JSON.stringify(filmsWatched));
-  } else {
-    localStorage.removeItem('filmsWatched');
+  try {
+    if (filmsWatched.length) {
+      localStorage.setItem('filmsWatched', JSON.stringify(filmsWatched));
+    } else {
+      localStorage.removeItem('filmsWatched');
+    }
+  } catch (error) {
+    throw error;
   }
 
   monitorButtonStatusText();
@@ -101,7 +128,7 @@ const toggleToWatched = ({ target }) => {
 
 const showDetails = selectFilm => {
   detailsCard.dataset.id = selectFilm.id;
-  posterImg.src = selectFilm.poster_path;
+  posterImg.src = `https://image.tmdb.org/t/p/w500${selectFilm.poster_path}`;
   posterImg.alt = selectFilm.original_title;
   cardDetailsTitle.textContent = selectFilm.original_title;
   cardDetailsVotes.textContent = `${selectFilm.vote_average} / ${selectFilm.vote_count}`;
@@ -119,6 +146,8 @@ const showDetails = selectFilm => {
 
   monitorButtonStatusText();
 };
+
+monitorButtonStatusText();
 
 actionBtnsForm.addEventListener('click', toggleToQueue);
 actionBtnsForm.addEventListener('click', toggleToWatched);
