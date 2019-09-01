@@ -66,11 +66,17 @@ function searchFilms(e) {
 }
 
 
-
+function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
 
 function plaginationNavigation(e) {
     if (e.target.classList.contains('page_prev')) {
         if (pageNumber > 1) {
+            scrollToTop()
             btnPageNumber.innerText--;
             pageNumber--;
 
@@ -89,6 +95,7 @@ function plaginationNavigation(e) {
     }
 
     if (e.target.classList.contains('page_next')) {
+        scrollToTop()
         btnPrev.classList.add('active');
         btnPageNumber.innerText++;
         pageNumber++;
