@@ -49,7 +49,7 @@ function activeDetailsPage(movieId, itsLibraryFilm) {
   } else {
     const selectFilm = renderFilms.find(item => item.id === movieId);
   }
-  // showDetails(selectFilm);
+  showDetails(selectFilm);
 }
 
 function chooseActiveLink(evt) {
