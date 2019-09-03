@@ -4,18 +4,7 @@ var URL_POPULAR = 'https://api.themoviedb.org/3/movie/popular?api_key=9675092798
 var URL_GENRES = 'https://api.themoviedb.org/3/genre/movie/list?api_key=9675092798f3a490a8c4d8f2cf77169b&language=en-US'; // - выбираем из DOM наш список;
 
 var filmList = document.querySelector('.filmList');
-filmList.setAttribute('data-name', 'home'); // function activeDetailsPageListener(e) {
-//   // console.dir(e.target);
-//   // console.log(e.currentTarget);
-//   console.log(e.target.dataset.id);
-//   console.log(e.currentTarget.dataset.name)
-//   if (e.currentTarget.dataset.name === 'home') {
-//     activeDetailsPage(e.target.dataset.id, false)
-//   } else if (e.currentTarget.dataset.name === 'library') {
-//     activeDetailsPage(e.target.dataset.id, true)
-//   }
-// }
-// - создаем глобальные переменные renderFilms и genres, pageNumber 
+filmList.setAttribute('data-name', 'home'); // - создаем глобальные переменные renderFilms и genres, pageNumber 
 // (будет использоваться в запросе при плагинации); 
 
 var renderFilms;
@@ -214,6 +203,7 @@ var btnHome = document.querySelector('.header__link--home');
 var btnLibrary = document.querySelector('.header__link--library');
 var sectionMain = document.querySelector('.home-page');
 var sectionCard = document.querySelector('.film-card');
+var sectionTeam = document.querySelector('.myTeam');
 var sectionLibrary = document.querySelector('main > .myFilmLibraryPage__container');
 var btnFavourites = document.querySelector('.myFilmLibraryPage__buttonFavourites');
 var btnQueue = document.querySelector('.myFilmLibraryPage__buttonQueue');
@@ -223,9 +213,11 @@ var btnAddToQueue = document.querySelector('.card-details__AddToQueue');
 var btnRemoveFromQueue = document.querySelector('.card-details__RemoveFromQueue');
 var headerNav = document.querySelector('.header__nav');
 var headerLogo = document.querySelector('.header__logo');
+var footLink = document.querySelector('.footer__link');
 var selectFilm;
 
 function activeHomePage() {
+  sectionTeam.classList.add('non-active-section');
   sectionCard.classList.add('non-active-section');
   sectionLibrary.classList.add('non-active-section');
   sectionMain.classList.remove('non-active-section'); // actionBtnsForm.removeEventListener(toggleToQueue);
@@ -234,7 +226,18 @@ function activeHomePage() {
   // queueButton.removeEventListener(drawQueueFilmList);
 }
 
+function activeTeamPage() {
+  sectionTeam.classList.remove('non-active-section');
+  sectionCard.classList.add('non-active-section');
+  sectionLibrary.classList.add('non-active-section');
+  sectionMain.classList.add('non-active-section'); // actionBtnsForm.removeEventListener(toggleToQueue);
+  // actionBtnsForm.removeEventListener(toggleToWatched);
+  // favouriteButton.removeEventListener(drawWatchedFilmList);
+  // queueButton.removeEventListener(drawQueueFilmList);
+}
+
 function activeLibraryPage() {
+  sectionTeam.classList.add('non-active-section');
   sectionCard.classList.add('non-active-section');
   sectionMain.classList.add('non-active-section');
   sectionLibrary.classList.remove('non-active-section');
@@ -247,7 +250,8 @@ function activeLibraryPage() {
 function activeDetailsPageListener(e) {
   sectionCard.classList.remove('non-active-section');
   sectionMain.classList.add('non-active-section');
-  sectionLibrary.classList.add('non-active-section'); // form.removeEventListener(searchFilms)
+  sectionLibrary.classList.add('non-active-section');
+  sectionTeam.classList.add('non-active-section'); // form.removeEventListener(searchFilms)
   // containerBtn.removeEventListener(plaginationNavigation);
   // favouriteButton.removeEventListener(drawWatchedFilmList);
   // queueButton.removeEventListener(drawQueueFilmList);
@@ -325,6 +329,7 @@ btnHome.addEventListener('click', activeHomePage);
 headerLogo.addEventListener('click', activeHomePage);
 btnLibrary.addEventListener('click', activeLibraryPage);
 headerNav.addEventListener('click', chooseActiveLink);
+footLink.addEventListener('click', footLinkHandle);
 "use strict";
 
 var btnFix = document.querySelector('.button-fix');
@@ -612,66 +617,118 @@ var drawQueueFilmList = function drawQueueFilmList() {
 favouriteButton.addEventListener('click', drawWatchedFilmList);
 queueButton.addEventListener('click', drawQueueFilmList);
 /******************************************************** */
+// const footLink = document.querySelector('.footer__link');
+// const ul = document.querySelector('.filmList');
+// const homePage = document.querySelector('.home-page');
+// const buttons = document.querySelector('.button_page');
+// const search = document.querySelector('.search');
+// function footLinkHandle() {
+//   ul.classList.add('new__class');
+//   const contacts = document.createElement('li');
+//   contacts.classList.add('contacts');
+//   const person1 = document.createElement('div');
+//   const a1 = document.createElement('a');
+//   a1.setAttribute('href', 'https://github.com/HardRye');
+//   a1.textContent = 'https://github.com/HardRye';
+//   person1.classList.add('contacts__info');
+//   person1.textContent = 'Nikolay Mykhailenko';
+//   // contacts.appendChild(a1);
+//   // console.log(a1);
+//   const person2 = document.createElement('div');
+//   const a2 = document.createElement('a');
+//   a2.setAttribute('href', 'https://github.com/annakholod');
+//   a2.textContent = 'https://github.com/annakholod';
+//   person2.classList.add('contacts__info');
+//   person2.textContent = 'Anna Kholod';
+//   const person3 = document.createElement('div');
+//   const a3 = document.createElement('a');
+//   a3.setAttribute('href', 'https://github.com/kostyash23');
+//   a3.textContent = 'https://github.com/kostyash23';
+//   person3.classList.add('contacts__info');
+//   person3.textContent = 'Kostya Shmotoloha';
+//   const person4 = document.createElement('div');
+//   const a4 = document.createElement('a');
+//   a4.setAttribute('href', 'https://github.com/AlexxxxK');
+//   a4.textContent = 'https://github.com/AlexxxxK';
+//   person4.classList.add('contacts__info');
+//   person4.textContent = 'Alexandr Kozyr';
+//   const person5 = document.createElement('div');
+//   const a5 = document.createElement('a');
+//   a5.setAttribute('href', 'https://github.com/maximusII');
+//   a5.textContent = 'https://github.com/maximusII';
+//   person5.classList.add('contacts__info');
+//   person5.textContent = 'Maksym Osadchuk';
+//   const person6 = document.createElement('div');
+//   person6.classList.add('contacts__info--last');
+//   contacts.appendChild(person1);
+//   contacts.appendChild(a1);
+//   contacts.appendChild(person2);
+//   contacts.appendChild(a2);
+//   contacts.appendChild(person3);
+//   contacts.appendChild(a3);
+//   contacts.appendChild(person4);
+//   contacts.appendChild(a4);
+//   contacts.appendChild(person5);
+//   contacts.appendChild(a5);
+//   contacts.appendChild(person6);
+//   homePage.removeChild(buttons);
+//   homePage.removeChild(search);
+//   ul.innerHTML = '';
+//   ul.appendChild(contacts);
+// }
+// footLink.addEventListener('click', footLinkHandle);
+"use strict";
 
-var footLink = document.querySelector('.footer__link');
-var ul = document.querySelector('.filmList');
-var homePage = document.querySelector('.home-page');
-var buttons = document.querySelector('.button_page');
-var search = document.querySelector('.search');
+var myTeam = document.querySelector('.myTeam');
+var OUR_TEAM = [{
+  name: 'Nikolay Mykhailenko',
+  gitHubLink: 'https://github.com/HardRye',
+  facebookLink: false
+}, {
+  name: 'Anna Kholod',
+  gitHubLink: 'https://github.com/annakholod',
+  facebookLink: false
+}, {
+  name: 'Kostya Shmotoloha',
+  gitHubLink: 'https://github.com/kostyash23',
+  facebookLink: false
+}, {
+  name: 'Alexandr Kozyr',
+  gitHubLink: 'https://github.com/AlexxxxK',
+  facebookLink: false
+}, {
+  name: 'Maksym Osadchuk',
+  gitHubLink: 'https://github.com/maximusII',
+  facebookLink: false
+}];
 
 function footLinkHandle() {
-  ul.classList.add('new__class');
-  var contacts = document.createElement('li');
-  contacts.classList.add('contacts');
-  var person1 = document.createElement('div');
-  var a1 = document.createElement('a');
-  a1.setAttribute('href', 'https://github.com/HardRye');
-  a1.textContent = 'https://github.com/HardRye';
-  person1.classList.add('contacts__info');
-  person1.textContent = 'Nikolay Mykhailenko'; // contacts.appendChild(a1);
-  // console.log(a1);
+  activeTeamPage();
+  var fragment = document.createDocumentFragment(); // console.log(myTeam);
 
-  var person2 = document.createElement('div');
-  var a2 = document.createElement('a');
-  a2.setAttribute('href', 'https://github.com/annakholod');
-  a2.textContent = 'https://github.com/annakholod';
-  person2.classList.add('contacts__info');
-  person2.textContent = 'Anna Kholod';
-  var person3 = document.createElement('div');
-  var a3 = document.createElement('a');
-  a3.setAttribute('href', 'https://github.com/kostyash23');
-  a3.textContent = 'https://github.com/kostyash23';
-  person3.classList.add('contacts__info');
-  person3.textContent = 'Kostya Shmotoloha';
-  var person4 = document.createElement('div');
-  var a4 = document.createElement('a');
-  a4.setAttribute('href', 'https://github.com/AlexxxxK');
-  a4.textContent = 'https://github.com/AlexxxxK';
-  person4.classList.add('contacts__info');
-  person4.textContent = 'Alexandr Kozyr';
-  var person5 = document.createElement('div');
-  var a5 = document.createElement('a');
-  a5.setAttribute('href', 'https://github.com/maximusII');
-  a5.textContent = 'https://github.com/maximusII';
-  person5.classList.add('contacts__info');
-  person5.textContent = 'Maksym Osadchuk';
-  var person6 = document.createElement('div');
-  person6.classList.add('contacts__info--last');
-  contacts.appendChild(person1);
-  contacts.appendChild(a1);
-  contacts.appendChild(person2);
-  contacts.appendChild(a2);
-  contacts.appendChild(person3);
-  contacts.appendChild(a3);
-  contacts.appendChild(person4);
-  contacts.appendChild(a4);
-  contacts.appendChild(person5);
-  contacts.appendChild(a5);
-  contacts.appendChild(person6);
-  homePage.removeChild(buttons);
-  homePage.removeChild(search);
-  ul.innerHTML = '';
-  ul.appendChild(contacts);
-}
+  var teamWrapper = document.createElement('ul');
+  teamWrapper.classList.add('new__class', 'contacts'); // const contacts = document.createElement('div');
+  // contacts.classList.add('contacts');
 
-footLink.addEventListener('click', footLinkHandle);
+  OUR_TEAM.forEach(function (member) {
+    var personWrapper = document.createElement('li');
+    personWrapper.classList.add('contacts__info');
+    var personName = document.createElement('p');
+    personName.textContent = member.name;
+    var personSocials = document.createElement('div');
+    personSocials.classList.add('person__socials');
+    var gitHubLink = document.createElement('a');
+    gitHubLink.setAttribute('href', member.gitHubLink);
+    gitHubLink.setAttribute('target', '_blank');
+    gitHubLink.textContent = member.gitHubLink;
+    var fbLink = document.createElement('a');
+    fbLink.setAttribute('href', member.facebookLink);
+    fbLink.textContent = member.facebookLink;
+    personSocials.append(gitHubLink, fbLink);
+    personWrapper.append(personName, personSocials);
+    fragment.append(personWrapper);
+  });
+  teamWrapper.append(fragment);
+  myTeam.innerHTML = '';
+  myTeam.appendChild(teamWrapper);
+} // footLink.addEventListener('click', footLinkHandle);
