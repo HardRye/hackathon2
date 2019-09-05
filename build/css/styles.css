@@ -909,16 +909,50 @@ li {
 }
 
 .contacts {
-  margin: 0 auto;
+  margin: 30px auto;
 }
 
-.contacts__info {
+.person {
+  margin-bottom: 15px;
   font-size: 20px;
   padding-top: 20px;
 }
 
-.contacts__info--last {
-  height: 20px;
+.person:last-child {
+  margin-bottom: 0;
+}
+
+.person__name {
+  font-size: 30px;
+  font-family: "Roboto";
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.person__socials {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.person__socials-icon {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+}
+
+.person__socials-icon--github {
+  background-image: url("../images/github-sign.svg");
+}
+
+.person__socials-icon--facebook {
+  background-image: url("../images/facebook.svg");
+}
+
+.person__socials-icon--linkedin {
+  background-image: url("../images/linkedin.svg");
 }
 
 .non-active-section {
