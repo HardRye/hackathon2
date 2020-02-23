@@ -8,18 +8,6 @@ const URL_GENRES = 'https://api.themoviedb.org/3/genre/movie/list?api_key=967509
 const filmList = document.querySelector('.filmList');
 filmList.setAttribute('data-name', 'home');
 
-// function activeDetailsPageListener(e) {
-//   // console.dir(e.target);
-//   // console.log(e.currentTarget);
-//   console.log(e.target.dataset.id);
-//   console.log(e.currentTarget.dataset.name)
-//   if (e.currentTarget.dataset.name === 'home') {
-//     activeDetailsPage(e.target.dataset.id, false)
-//   } else if (e.currentTarget.dataset.name === 'library') {
-//     activeDetailsPage(e.target.dataset.id, true)
-//   }
-// }
-
 // - создаем глобальные переменные renderFilms и genres, pageNumber 
 // (будет использоваться в запросе при плагинации); 
 let renderFilms;

@@ -894,26 +894,65 @@ li {
   border-radius: 10px;
 }
 
-.new__class {
-  text-align: center;
-}
-
 .footer__link {
   color: blue;
   cursor: pointer;
 }
 
-.contacts {
-  margin: 0 auto;
+.myTeam {
+  width: 100%;
 }
 
-.contacts__info {
+.new__class {
+  text-align: center;
+  list-style: none;
+}
+
+.contacts {
+  margin: 30px auto;
+}
+
+.person {
+  margin-bottom: 15px;
   font-size: 20px;
   padding-top: 20px;
 }
 
-.contacts__info--last {
-  height: 20px;
+.person:last-child {
+  margin-bottom: 0;
+}
+
+.person__name {
+  font-size: 30px;
+  font-family: "Roboto";
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.person__socials {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.person__socials-icon {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+}
+
+.person__socials-icon--github {
+  background-image: url("../images/github-sign.svg");
+}
+
+.person__socials-icon--facebook {
+  background-image: url("../images/facebook.svg");
+}
+
+.person__socials-icon--linkedin {
+  background-image: url("../images/linkedin.svg");
 }
 
 .non-active-section {
