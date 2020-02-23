@@ -682,29 +682,29 @@ queueButton.addEventListener('click', drawQueueFilmList);
 var myTeam = document.querySelector('.myTeam');
 var OUR_TEAM = [{
   name: 'Nikolay Mykhailenko',
-  gitHubLink: 'https://github.com/HardRye',
-  facebookLink: false,
-  linkedInLink: false
+  gitHubLink: 'https://www.github.com/HardRye',
+  facebookLink: 'https://www.facebook.com/profile.php?id=100014592882557',
+  linkedInLink: 'https://www.linkedin.com/in/nikolay-m'
 }, {
   name: 'Anna Kholod',
-  gitHubLink: 'https://github.com/annakholod',
-  facebookLink: false,
-  linkedInLink: false
+  gitHubLink: 'https://www.github.com/annakholod',
+  facebookLink: 'https://www.facebook.com/profile.php?id=100023500111911',
+  linkedInLink: 'https://www.linkedin.com/in/anna-kholod-b8930578/'
 }, {
   name: 'Kostya Shmotoloha',
-  gitHubLink: 'https://github.com/kostyash23',
-  facebookLink: false,
-  linkedInLink: false
+  gitHubLink: 'https://www.github.com/kostyash23',
+  facebookLink: 'https://www.facebook.com/kostia.shmotoloha',
+  linkedInLink: 'https://www.linkedin.com/in/kostiash/'
 }, {
   name: 'Alexandr Kozyr',
-  gitHubLink: 'https://github.com/AlexxxxK',
-  facebookLink: false,
-  linkedInLink: false
+  gitHubLink: 'https://www.github.com/AlexxxxK',
+  facebookLink: '#',
+  linkedInLink: 'https://www.linkedin.com/in/oleksandr-kozyr/'
 }, {
   name: 'Maksym Osadchuk',
-  gitHubLink: 'https://github.com/maximusII',
-  facebookLink: false,
-  linkedInLink: false
+  gitHubLink: 'https://www.github.com/maximusII',
+  facebookLink: 'https://www.facebook.com/maxym.osadchuk',
+  linkedInLink: 'https://www.linkedin.com/in/maksym-osadchuk-869a80123/'
 }];
 
 function footLinkHandle() {
